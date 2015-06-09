@@ -16,6 +16,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 
 group :development do
+  gem 'pry-rails'
   gem 'annotate'
   gem 'pry-byebug'
   gem 'binding_of_caller'
