@@ -13,13 +13,13 @@ gem 'jbuilder'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'newrelic_rpm'
 gem 'bcrypt', '~> 3.1.7'
+gem 'puma'
 
 
 group :development do
   gem 'pry-rails'
   gem 'annotate'
   gem 'pry-byebug'
-  gem 'puma'
   gem 'binding_of_caller'
   gem 'better_errors'
 end
