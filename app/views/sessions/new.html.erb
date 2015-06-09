@@ -1,0 +1,9 @@
+<h1>Log In</h1>
+<%= render(
+  "layouts/username_password_form",
+  url: session_url,
+  button_msg: "Log In",
+  user: @user
+) %>
+
+<%= button_to "Register", new_user_url, method: :get %>

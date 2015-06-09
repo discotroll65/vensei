@@ -4,7 +4,7 @@ window.Vensei = {
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    console.log('vines are cool');
   }
 };
 

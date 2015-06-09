@@ -16,7 +16,7 @@
 //= underscore
 //= require underscore
 //= require backbone
-//= require bootsrap
+//= require bootstrap
 //= require vensei
 //= require_tree ../templates
 //= require_tree ./utils
