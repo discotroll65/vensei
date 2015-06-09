@@ -11,7 +11,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jbuilder'
 gem 'sdoc', '~> 0.4.0', group: :doc
-
+gem 'newrelic_rpm'
 gem 'bcrypt', '~> 3.1.7'
 
 
