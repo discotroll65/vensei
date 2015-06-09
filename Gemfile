@@ -19,6 +19,7 @@ group :development do
   gem 'pry-rails'
   gem 'annotate'
   gem 'pry-byebug'
+  gem 'puma'
   gem 'binding_of_caller'
   gem 'better_errors'
 end
