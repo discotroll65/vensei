@@ -19,6 +19,7 @@ gem 'puma'
 group :development do
   gem 'pry-rails'
   gem 'annotate'
+  gem 'quiet_assets'
   gem 'pry-byebug'
   gem 'binding_of_caller'
   gem 'better_errors'
