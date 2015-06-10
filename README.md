@@ -2,7 +2,7 @@
 
 [Heroku link][heroku]
 
-[heroku]: http://flux-capacitr.herokuapp.com
+[heroku]: http://vensei.herokuapp.com
 
 ## Minimum Viable Product
 Vensei lets you know how your vine tastes match up against the public in real time. Inspired by Poll Everywhere, Vensei is built on Rails and Backbone. Users can:
