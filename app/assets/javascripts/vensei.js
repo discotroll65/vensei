@@ -13,6 +13,9 @@ window.Vensei = {
     });
 
     $("#nav").html(navbar.render().$el);
+    if (CURRENT_USER_ID.length > 0){
+      Backbone.history.start();
+    }
   }
 };
 
