@@ -1,3 +1,3 @@
-Vensei.Routers.Vines = Backbone.Router.extend({
+Vensei.Routers.Router = Backbone.Router.extend({
 
 });
