@@ -7,3 +7,24 @@
   background: blue;
   width: 90%;
 }
+
+.replay {
+  width: 300px
+}
+
+.browse-battles {
+  .replay {
+    background: aliceblue;
+    width: 150px;
+    height: 150px;
+    display: block;
+    position: relative;
+    margin: auto;
+
+    h1{
+      position: absolute;
+      top: 55px;
+      left: 20px;
+    }
+  }
+}
