@@ -4,11 +4,17 @@ Vensei.Routers.Router = Backbone.Router.extend({
   },
 
   routes:{
-    '' : "landingPage"
+    '' : "landingPage",
+    'browse-battles' : 'browseBattles'
   },
 
   landingPage: function(){
     var view = new Vensei.Views.LandingPage();
+    this._swapView(view);
+  },
+
+  browseBattles: function(){
+    var view = new Vensei.Views.BrowseBattles();
     this._swapView(view);
   },
 

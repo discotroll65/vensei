@@ -15,3 +15,42 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+html {
+  height: 100%
+}
+
+body {
+  height: 100%
+}
+
+h1 {
+  margin: 0;
+}
+
+#content {
+  height: 100%;
+  background: pink;
+}
+
+nav.navbar {
+  margin: 0;
+  height: 77px;
+}
+
+.group:after {
+  clear: both;
+  display: block;
+  content: "";
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.centered {
+  margin: auto;
+  width: 98%;
+  display: block;
+
+}
