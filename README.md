@@ -9,8 +9,8 @@ Vensei lets you know how your vine tastes match up against the public in real ti
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
-- [ ] Create accounts
-- [ ] Create sessions (log in)
+- [x] Create accounts
+- [x] Create sessions (log in)
 - [ ] Vote on Vines 
 - [ ] Create Vine matchup polls 
 - [ ] See matchup poll results as they come in when people vote via web portal
