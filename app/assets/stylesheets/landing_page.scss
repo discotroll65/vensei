@@ -1,0 +1,123 @@
+.landing-live-battle {
+  width: 644px;
+  height: 400px;
+  background: green;
+}
+
+.live-action {
+  position: relative;
+  height: 643px;
+  background: green;
+}
+
+#value-statement {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  width: 500px;
+  padding-top: 100px;
+
+  h3 {
+    margin: 0 auto;
+  }
+  h1 {
+    margin: 0 auto 30px auto;
+  }
+}
+
+.value-statement-buttons{
+  width: 600px;
+  margin: auto;
+  position: relative;
+  top: 55px;
+  button{
+    margin: 0 50px;
+  }
+}
+
+// *********computer view***********
+
+.computer {
+  margin: 0 auto;
+  display: block;
+  position: relative;
+  top: 90px;
+  height: 482px;
+  width: 828px;
+  background-image: image-url('computer.gif')
+  // 828 X 482 px
+  // actual is a div with 888 x 493
+}
+
+.landing-live-battle {
+  height: 394px;
+  width: 629px;
+  margin: auto;
+  background: none;
+  position: relative;
+  top: 35px;
+}
+.live-battle-place-holder {
+  height: 394px;
+  width: 101%;
+  background: orange;
+}
+
+#how-it-works {
+  height: 681px;
+  padding-top: 220px;
+  padding-bottom: 50px;
+  background: white;
+  text-align: center;
+  h1 {
+    margin-top: 100px;
+  }
+
+  ol{
+    margin: auto;
+    width: 900px;
+  }
+
+  li {
+    float: left;
+    width: 175px;
+    margin: 50px;
+  }
+}
+
+#explain-vine-browsing {
+  background: grey;
+  height: 677px;
+  ul {
+    margin: auto;
+  }
+
+  li {
+    float: left;
+  }
+
+  .response-block{
+    border: 1px solid black;
+    height: 400px;
+    width: 550px;
+    margin: 30px;
+  }
+}
+
+#buzz{
+  background:red;
+  height: inherit;
+  h1 {
+    text-align: center;
+  }
+  .garrett {
+    background-image: image_url("garrett_simpson_app_academy.jpg");
+    background-repeat: no-repeat;
+    height: 240px;
+    width: 195px;
+    position: relative;
+    top: 7px;
+    left: 15px;
+  }
+
+}
