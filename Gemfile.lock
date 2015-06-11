@@ -190,10 +190,6 @@ GEM
       memoizable (~> 0.4.0)
       naught (~> 1.0)
       simple_oauth (~> 0.3.0)
-    twitter-vine (0.1.9)
-      faraday
-      nokogiri
-      twitter (> 5.13.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.7.1)
@@ -222,5 +218,5 @@ DEPENDENCIES
   rails (= 4.2.1)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  twitter-vine
+  twitter
   uglifier (>= 1.3.0)
