@@ -14,7 +14,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'newrelic_rpm'
 gem 'bcrypt', '~> 3.1.7'
 gem 'puma'
-gem 'twitter'
+gem 'twitter-vine', github: 'discotroll65/twitter-vine'
 
 
 group :development do
