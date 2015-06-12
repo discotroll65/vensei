@@ -22,7 +22,6 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.attachSubviews();
     if(this.vines.length > 0){
-
       setTimeout(this.moveVine.bind(this, 1), 0);
     }
     return this;
@@ -34,7 +33,9 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   },
 
   replayCurrentVines: function(){
-    console.log("Replay!!!")
+    $('.vine-1').removeClass('done').addClass('away');
+    $('.vine-2').removeClass('done').addClass('away');
+    setTimeout(this.moveVine.bind(this, 1), 0);
   },
 
   moveVine: function(number){
