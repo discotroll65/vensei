@@ -30,7 +30,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     var $target = $(event.currentTarget);
     var $vid = $target.find('video');
     var vine = ($target.attr('class') === 'vine-1') ? this.vine1 : this.vine2 ;
-    $vid.attr("src", vine.src_url)
+    $vid.attr("src", vine.get('src_url'))
       .prop("autoplay", true)
       .prop("loop",true);
   }
