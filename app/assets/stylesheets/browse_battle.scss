@@ -48,16 +48,31 @@
     margin: auto;
     height: 330px;
     width: 330px;
+    transition: top 500ms ease;
+  }
+
+  .vine-1.away{
+    top: -500%;
   }
 
   .vine-1{
-    top: -500%;
-    z-index: 30;
+    z-index: 35;
   }
 
   .vine-2{
+    z-index: 30;
+  }
+
+  .vine.playing{
+    top: 0;
+  }
+
+  .vine.voting{
+    position: static;
+  }
+
+
+  .vine-2.away{
     top: 500%;
-    z-index: 35;
-    transition: top 500ms ease;
   }
 }
