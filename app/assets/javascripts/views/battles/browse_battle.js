@@ -2,7 +2,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   template: JST['battles/browse_battle'],
 
   initialize: function(){
-    this.vines = this.collection;
+    this.vines = this.collection.reset(this.collection.shuffle(), {silent:true});
     this.vine1 = this.collection.shift();
     this.vine2 = this.collection.shift();
   },
