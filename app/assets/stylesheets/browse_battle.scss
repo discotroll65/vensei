@@ -1,7 +1,3 @@
-.vine-container{
-  height: 400px;
-  background: red;
-}
 
 .results-carousel{
   background: blue;
@@ -13,6 +9,20 @@
 }
 
 .browse-battles {
+  height: 100%;
+
+  .vine-container{
+    height: 330px;
+    background: red;
+    padding: 0;
+  }
+
+  h1{
+    margin: 0;
+    padding: 94px;
+    text-align: center;
+  }
+
   .replay {
     background: aliceblue;
     width: 150px;
@@ -25,6 +35,29 @@
       position: absolute;
       top: 55px;
       left: 20px;
+      padding: 0;
     }
+
+  }
+  .vine{
+    background: blue;
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    height: 330px;
+    width: 330px;
+  }
+
+  .vine-1{
+    top: -500%;
+    z-index: 30;
+  }
+
+  .vine-2{
+    top: 500%;
+    z-index: 35;
+    transition: top 500ms ease;
   }
 }

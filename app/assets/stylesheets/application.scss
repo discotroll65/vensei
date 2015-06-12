@@ -16,6 +16,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.row{
+  margin-left: 0;
+  margin-right: 0;
+}
+
 html {
   height: 100%
 }
