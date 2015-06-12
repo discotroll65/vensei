@@ -2,9 +2,17 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   template: JST['battles/browse_battle'],
 
   initialize: function(){
-    this.vines = this.collection.reset(this.collection.shuffle(), {silent:true});
+    this.setupBattle();
+    this.listenTo(this.vines, 'sync', this.setupBattle);
+  },
+
+  setupBattle: function(){
+    this.collection.reset(this.collection.shuffle(), {silent:true});
+    this.vines = this.collection;
     this.vine1 = this.collection.shift();
     this.vine2 = this.collection.shift();
+
+    this.render();
   },
 
   className: "browse-battles",
@@ -13,12 +21,20 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     var content = this.template();
     this.$el.html(content);
     this.attachSubviews();
-    setTimeout(this.moveVine.bind(this,1), 0);
+    if(this.vines.length > 0){
+
+      setTimeout(this.moveVine.bind(this, 1), 0);
+    }
     return this;
   },
 
   events: {
-    "transitionend .vine" : "playVine"
+    "transitionend .vine" : "playVine",
+    "click .replay" : "replayCurrentVines"
+  },
+
+  replayCurrentVines: function(){
+    console.log("Replay!!!")
   },
 
   moveVine: function(number){
@@ -66,8 +82,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
 
 
   nextTwoVines: function(){
-    this.initialize();
-    this.render();
+    this.setupBattle();
   },
 
   playVine: function (event){
