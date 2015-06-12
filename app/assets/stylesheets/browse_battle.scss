@@ -18,10 +18,13 @@
     position: static;
   }
 
-  h1{
-    margin: 0;
+  .prompt{
     padding: 94px;
-    text-align: center;
+
+    h1, h2{
+      margin: 0;
+      text-align: center;
+    }
   }
 
   .replay {
@@ -67,6 +70,14 @@
 
   .vine-1{
     z-index: 30;
+  }
+
+  .row.vines-titles-row{
+    height: 65px;
+  }
+
+  h1.vine-auther{
+    padding: 0;
   }
 
   .vine-2{
