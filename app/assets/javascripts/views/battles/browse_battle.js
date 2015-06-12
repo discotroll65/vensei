@@ -57,10 +57,34 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       vine = this.vine1;
     }
 
-    $vid.attr("src", vine.get('src_url')).prop("autoplay", true);
-    var handleVineFinish = this.handleVineEnd.bind($vid[0], this);
+    
+    this._currentVid = $vid[0];
+    this.addSourceToVideo(this._currentVid, vine.get('src_url'), "video/mp4");
+    this._currentVid.addEventListener("progress", this.progressHandler.bind(this), false);
 
-    $vid[0].addEventListener('ended', this.handleVineEnd.bind($vid[0], this), true);
+    this._currentVid.play();
+    var handleVineFinish = this.handleVineEnd.bind(this._currentVid, this);
+
+    this._currentVid.addEventListener('ended', this.handleVineEnd.bind($vid[0], this), true);
+  },
+
+
+  addSourceToVideo: function(element, src, type) {
+    var source = document.createElement('source');
+    source.src = src;
+    source.type = type;
+    element.appendChild(source);
+  },
+
+  progressHandler: function(e) {
+    if( this._currentVid.duration ) {
+        var percent = (this._currentVid.buffered.end(0)/this._currentVid.duration) * 100;
+        console.log( percent );
+        if( percent >= 100 ) {
+            console.log("loaded!");
+        }
+        this._currentVid.currentTime++;
+    }
   }
 
 });
