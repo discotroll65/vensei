@@ -27,6 +27,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   },
 
   handleVineEnd: function(that){
+    // this here is the video, that is the view
     var $target = $(this);
     this.removeEventListener('ended', that.handleVineEnd.bind(this, that));
     if ($(this).attr('class').split(" ").indexOf("vine-vid-1") === -1){
@@ -34,11 +35,35 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       $('.vine-2').addClass('done');
       $('.vine-1').removeClass('playing');
       $('.vine-1').addClass('done');
-      setTimeout(that.nextTwoVines.bind(that), 500);
+      $('body').keydown(that.checkKey.bind(that));
+      // setTimeout(that.nextTwoVines.bind(that), 500);
     } else {
       that.moveVine(2);
     }
   },
+
+  checkKey: function(event){
+    // left arrow keycode = 37
+    // right arrow keycode = 39
+    if (event.keyCode === 39 || event.keyCode === 37){
+      this.vote(event.keyCode);
+      $('body').off('keydown');
+      this.nextTwoVines();
+    }
+  },
+
+  vote: function(keycode){
+    (keycode === 39) ? this.voteRight() : this.voteLeft();
+  },
+
+  voteRight: function(){
+    console.log("voted right");
+  },
+
+  voteLeft: function(){
+    console.log("voted left");
+  },
+
 
   nextTwoVines: function(){
     this.initialize();
@@ -57,7 +82,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       vine = this.vine1;
     }
 
-    
+
     this._currentVid = $vid[0];
     this.addSourceToVideo(this._currentVid, vine.get('src_url'), "video/mp4");
     this._currentVid.addEventListener("progress", this.progressHandler.bind(this), false);
@@ -65,7 +90,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     this._currentVid.play();
     var handleVineFinish = this.handleVineEnd.bind(this._currentVid, this);
 
-    this._currentVid.addEventListener('ended', this.handleVineEnd.bind($vid[0], this), true);
+    $(this._currentVid).one('ended', handleVineFinish);
   },
 
 
