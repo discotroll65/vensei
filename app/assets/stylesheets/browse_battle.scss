@@ -49,6 +49,11 @@
     height: 330px;
     width: 330px;
     transition: top 500ms ease;
+    // transition: position 500ms ease;
+  }
+
+  .vine.done{
+    position: static;
   }
 
   .vine-1.away{
@@ -56,11 +61,11 @@
   }
 
   .vine-1{
-    z-index: 35;
+    z-index: 30;
   }
 
   .vine-2{
-    z-index: 30;
+    z-index: 35;
   }
 
   .vine.playing{
