@@ -5,9 +5,9 @@
       Vine by
       <a
         class="vine-author-link vine-author-link-<%= number %>"
-        href="<%= "vine.author_profile_url" %>"
+        href="<%= vine.escape('author_profile_url') %>"
       >
-        <%= "vine.vine_author" %>
+        <%= vine.escape('vine_author') %>
       </a>
     </h1>
 
@@ -19,8 +19,10 @@
     </video>
 
     <p class="vine-text">
-      <a class="vine-text-link vine-text-link-<%= number %>">
-        <%= vine.text %>
+      <a
+        class="vine-text-link vine-text-link-<%= number %>"
+        href="<%= vine.escape('vine_url') %>">
+        <%= vine.escape('text') %>
       </a>
     </p>
   </div>

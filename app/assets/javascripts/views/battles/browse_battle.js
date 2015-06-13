@@ -4,6 +4,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   initialize: function(){
     this.setupBattle();
     this.listenTo(this.vines, 'sync', this.setupBattle);
+
   },
 
   setupBattle: function(){
@@ -18,6 +19,10 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   className: "browse-battles",
 
   render: function(){
+    var filler = new Vensei.Models.Vine();
+    this.vine1 = this.vine1 || filler;
+    this.vine2 = this.vine2 || filler;
+
     var content = this.template({
       vine1: this.vine1,
       vine2: this.vine2
