@@ -18,7 +18,10 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   className: "browse-battles",
 
   render: function(){
-    var content = this.template();
+    var content = this.template({
+      vine1: this.vine1,
+      vine2: this.vine2
+    });
     this.$el.html(content);
     this.attachSubviews();
     if(this.vines.length > 0){
