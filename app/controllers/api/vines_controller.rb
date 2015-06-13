@@ -2,13 +2,13 @@ class Api::VinesController < ApplicationController
 
 
   def show
-    @vine = Vine.find(params[:id])
-    render json: @vine
+    @vine = Vine.includes(:vine_author).find(params[:id])
+    render :show
   end
 
   def index
-    @vines = Vine.all
-    render json: @vines
+    @vines = Vine.includes(:vine_author).all
+    render :index
   end
 
   def create
@@ -24,7 +24,7 @@ class Api::VinesController < ApplicationController
   private
 
   def vine_params
-    params.require(:vine).permit(:vine_url, :src_url, :vine_author)
+    params.require(:vine).permit(:vine_url)
   end
 
   def make_vine_client
