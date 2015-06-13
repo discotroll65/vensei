@@ -94,7 +94,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
 
   voteLeft: function(){
     $('.voting-result-text')
-      .append("You voted for "+ this.vine1.escape('vine_author') +"'s vine.");
+      .text("You voted for "+ this.vine1.escape('vine_author') +"'s vine.");
     setTimeout(
       function(){
         $('.voting-result-text').empty();
