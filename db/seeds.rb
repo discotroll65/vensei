@@ -19,15 +19,31 @@ parsed_vines = parsed_vines.map do |vine_url|
   vine_url.strip
 end
 
+def get_vine_author(response_vine)
+  vine_author = VineAuthor.find_by(vine_username: response_vine[:vine_author])
+  if !vine_author
+    vine_author = VineAuthor.create({
+      vine_username: response_vine[:vine_author],
+      profile_url: response_vine[:vine_author_profile_url]
+    })
+  end
+
+  vine_author
+end
+
 parsed_vines.each do |vine_url|
   response_vine = TwitterVine::Client.search(vine_url, {count: 1})[0]
+
   if response_vine
+    vine_author = get_vine_author(response_vine)
+
     new_vine = {
       vine_url: response_vine[:vine_url],
       src_url: response_vine[:vine_src],
-      vine_author: response_vine[:vine_author],
-      text: response_vine[:text]
+      text: response_vine[:text],
+      thumbnail_url: response_vine[:vine_thumbnail]
     }
-    Vine.create(new_vine)
+    
+    vine_author.vines << Vine.create(new_vine)
   end
 end

@@ -2,9 +2,12 @@
   <div class="vine vine-<%= number %> away">
 
     <h1 class="vine-author vine-author-<%= number %>" >
-      From
-      <a class="vine-author-link vine-author-link-<%= number %>">
-        @omnificent_don
+      Vine by
+      <a
+        class="vine-author-link vine-author-link-<%= number %>"
+        href="<%= "vine.author_profile_url" %>"
+      >
+        <%= "vine.vine_author" %>
       </a>
     </h1>
 
@@ -17,10 +20,7 @@
 
     <p class="vine-text">
       <a class="vine-text-link vine-text-link-<%= number %>">
-        This is thsljslmfsoivja;lvmaljilxcvmldfjlmck
-        alkjflfjlm
-        adflkjlkf
-        clkajsdf
+        <%= vine.text %>
       </a>
     </p>
   </div>

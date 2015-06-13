@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150612000653) do
+ActiveRecord::Schema.define(version: 20150613091428) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,17 +29,27 @@ ActiveRecord::Schema.define(version: 20150612000653) do
   add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  create_table "vine_authors", force: :cascade do |t|
+    t.string   "vine_username", null: false
+    t.string   "profile_url",   null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "vine_authors", ["vine_username"], name: "index_vine_authors_on_vine_username", unique: true, using: :btree
+
   create_table "vines", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "vine_author"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
     t.string   "text"
     t.string   "vine_url"
     t.string   "src_url"
+    t.string   "thumbnail_url"
+    t.integer  "vine_author_id", null: false
   end
 
   add_index "vines", ["src_url"], name: "index_vines_on_src_url", unique: true, using: :btree
-  add_index "vines", ["vine_author"], name: "index_vines_on_vine_author", using: :btree
+  add_index "vines", ["vine_author_id"], name: "index_vines_on_vine_author_id", using: :btree
   add_index "vines", ["vine_url"], name: "index_vines_on_vine_url", unique: true, using: :btree
 
 end

@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/discotroll65/twitter-vine.git
-  revision: e2efe62ae5b4201a6d13440667fabfbec21c57ac
+  revision: 4768133c2cdc1a6aeaba6b4960baf1792c19c782
   specs:
     twitter-vine (0.1.9)
       faraday
