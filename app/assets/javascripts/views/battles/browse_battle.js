@@ -73,7 +73,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     if (event.keyCode === 39 || event.keyCode === 37){
       this.vote(event.keyCode);
       $('body').off('keydown');
-      this.nextTwoVines();
+      setTimeout(this.nextTwoVines.bind(this), 2000);
     }
   },
 
@@ -82,10 +82,24 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   },
 
   voteRight: function(){
+    $('.voting-result-text')
+      .append("You voted for "+ this.vine2.escape('vine_author') +"'s vine.");
+    setTimeout(
+      function(){
+        $('.voting-result-text').empty();
+      }, 2000
+    );
     console.log("voted right");
   },
 
   voteLeft: function(){
+    $('.voting-result-text')
+      .append("You voted for "+ this.vine1.escape('vine_author') +"'s vine.");
+    setTimeout(
+      function(){
+        $('.voting-result-text').empty();
+      }, 2000
+    );
     console.log("voted left");
   },
 
@@ -109,7 +123,10 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
 
     this._currentVid = $vid[0];
     this.addSourceToVideo(this._currentVid, vine.get('src_url'), "video/mp4");
-    this._currentVid.addEventListener("progress", this.progressHandler.bind(this), false);
+    $vid.attr("poster", vine.get('thumbnail.url'));
+    this._currentVid.addEventListener(
+      "progress", this.progressHandler.bind(this), false
+    );
 
     this._currentVid.play();
     var handleVineFinish = this.handleVineEnd.bind(this._currentVid, this);
@@ -127,7 +144,8 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
 
   progressHandler: function(e) {
     if( this._currentVid.duration ) {
-        var percent = (this._currentVid.buffered.end(0)/this._currentVid.duration) * 100;
+        var percent = (
+          this._currentVid.buffered.end(0)/this._currentVid.duration) * 100;
         console.log( percent );
         if( percent >= 100 ) {
             console.log("loaded!");

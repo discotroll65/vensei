@@ -4,6 +4,16 @@
   width: 90%;
 }
 
+.voting-result-text{
+  -webkit-animation: fadein 1s;
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+
 .replay {
   width: 300px
 }
@@ -17,7 +27,7 @@
 
   .vine-container{
     height: 550px;
-    background: red;
+    // background: red;
     padding: 0;
     position: static;
   }
