@@ -1,6 +1,8 @@
 Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   template: JST['battles/browse_battle'],
 
+  className: "browse-battles",
+
   initialize: function(){
     this.setupBattle();
     this.listenTo(this.vines, 'sync', this.setupBattle);
@@ -16,7 +18,6 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     this.render();
   },
 
-  className: "browse-battles",
 
   render: function(){
     var filler = new Vensei.Models.Vine();
@@ -35,20 +36,40 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     return this;
   },
 
+  moveVine: function(number){
+    var $vine = $('.vine-' + number);
+    $vine.removeClass('away').addClass('playing');
+  },
+
   events: {
     "transitionend .vine" : "playVine",
     "click .replay" : "replayCurrentVines"
   },
 
-  replayCurrentVines: function(){
-    $('.vine-1').removeClass('done').addClass('away');
-    $('.vine-2').removeClass('done').addClass('away');
-    setTimeout(this.moveVine.bind(this, 1), 0);
-  },
+  playVine: function (event){
+    var number;
+    var vine;
+    var that = this;
+    var $target = $(event.currentTarget);
+    var $vid = $target.find('video');
+    if($vid.attr('class').split(" ").indexOf("vine-vid-1") === -1){
+      vine = this.vine2;
+    } else{
+      vine = this.vine1;
+    }
 
-  moveVine: function(number){
-    var $vine = $('.vine-' + number);
-    $vine.removeClass('away').addClass('playing');
+
+    this._currentVid = $vid[0];
+    this.addSourceToVideo(this._currentVid, vine.get('src_url'), "video/mp4");
+    $vid.attr("poster", vine.get('thumbnail.url'));
+    this._currentVid.addEventListener(
+      "progress", this.progressHandler.bind(this), false
+    );
+
+    this._currentVid.play();
+    var handleVineFinish = this.handleVineEnd.bind(this._currentVid, this);
+
+    $(this._currentVid).one('ended', handleVineFinish);
   },
 
   handleVineEnd: function(that){
@@ -103,37 +124,15 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     console.log("voted left");
   },
 
-
   nextTwoVines: function(){
     this.setupBattle();
   },
 
-  playVine: function (event){
-    var number;
-    var vine;
-    var that = this;
-    var $target = $(event.currentTarget);
-    var $vid = $target.find('video');
-    if($vid.attr('class').split(" ").indexOf("vine-vid-1") === -1){
-      vine = this.vine2;
-    } else{
-      vine = this.vine1;
-    }
-
-
-    this._currentVid = $vid[0];
-    this.addSourceToVideo(this._currentVid, vine.get('src_url'), "video/mp4");
-    $vid.attr("poster", vine.get('thumbnail.url'));
-    this._currentVid.addEventListener(
-      "progress", this.progressHandler.bind(this), false
-    );
-
-    this._currentVid.play();
-    var handleVineFinish = this.handleVineEnd.bind(this._currentVid, this);
-
-    $(this._currentVid).one('ended', handleVineFinish);
+  replayCurrentVines: function(){
+    $('.vine-1').removeClass('done').addClass('away');
+    $('.vine-2').removeClass('done').addClass('away');
+    setTimeout(this.moveVine.bind(this, 1), 0);
   },
-
 
   addSourceToVideo: function(element, src, type) {
     var source = document.createElement('source');
