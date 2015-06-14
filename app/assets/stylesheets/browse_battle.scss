@@ -24,7 +24,7 @@
 
 .browse-battles {
   height: 100%;
-  overflow: hidden;
+  // overflow: hidden;
 
   .vine-container{
     height: 550px;
@@ -70,7 +70,7 @@
     position: absolute;
     margin: auto;
     height: 450px;
-    width: 330px;
+    width: 644px;
     transition: top 500ms ease;
     p {
       font-size: 20px;
@@ -112,7 +112,8 @@
   .vine.playing{
     top: 0;
     left: 50%;
-    margin-left: -165px;
+    margin-left: -322px;
+    position: absolute;
   }
 
   .vine.voting{
@@ -122,5 +123,6 @@
 
   .vine-2.away{
     top: 500%;
+    position: fixed;
   }
 }
