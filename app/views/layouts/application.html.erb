@@ -10,6 +10,14 @@
 <script type="text/javascript">
   window.CURRENT_USER_USERNAME = "<%= current_user.try(:username) %>"
   window.CURRENT_USER_ID = "<%= current_user.try(:id) %>"
+
+  var $viewportMeta = $('meta[name="viewport"]');
+  $('input, select, textarea').bind('focus blur', function(event) {
+    $viewportMeta.attr(
+      'content',
+      'width=device-width,initial-scale=1,maximum-scale=' + (event.type == 'blur' ? 10 : 1)
+    );
+  });
 </script>
 <body>
   <%= render "layouts/errors" %>
