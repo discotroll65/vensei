@@ -5,3 +5,37 @@
 .landing-page {
   height: 100%;
 }
+
+.login-signup-background{
+  height: 100%;
+  width: 100%;
+  background: black;
+}
+
+.login-signup-container{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background: aliceblue;
+  width: 400px;
+  height: 400px;
+  border-radius: 3px;
+  font-size: 35px;
+  text-align: center;
+
+  .vensei{
+    font-size: 72px;
+    color: forestgreen;
+  }
+
+  h1{
+    font-size: 60px;
+  }
+  .btn{
+    font-size: 35px;
+    margin: 4px;
+  }
+}
