@@ -30,7 +30,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     this.$el.html(content);
     this.attachSubviews();
     if(this.vines.length > 0){
-      setTimeout(this.moveVine.bind(this, 1), 0);
+      setTimeout(this.moveVine.bind(this, 1), 50);
     }
     return this;
   },
@@ -83,7 +83,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
 
   voteRight: function(){
     $('.voting-result-text')
-      .append("You voted for "+ this.vine2.escape('vine_author') +"'s vine.");
+      .text("You voted for "+ this.vine2.escape('vine_author') +"'s vine.");
     setTimeout(
       function(){
         $('.voting-result-text').empty();
