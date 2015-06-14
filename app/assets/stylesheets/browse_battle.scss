@@ -24,6 +24,7 @@
 
 .browse-battles {
   height: 100%;
+  overflow: hidden;
 
   .vine-container{
     height: 550px;
@@ -41,6 +42,11 @@
     }
   }
 
+  h1.vine-author{
+    font-size: 25px;
+    overflow: overlay;
+  }
+
   .replay {
     background: aliceblue;
     width: 150px;
@@ -55,7 +61,6 @@
       left: 20px;
       padding: 0;
     }
-
   }
 
 
@@ -64,13 +69,15 @@
     background: palegoldenrod;
     position: absolute;
     margin: auto;
-    height: 330px;
+    height: 450px;
     width: 330px;
     transition: top 500ms ease;
     p {
-      font-size: 25px;
+      font-size: 20px;
       word-wrap: break-word;
       background: palegoldenrod;
+      overflow-y: overlay;
+      height: 100px;
     }
   }
 
