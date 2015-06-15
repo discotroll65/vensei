@@ -105,10 +105,11 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   vote: function(keycode){
     (keycode === 38) ? this.voteUp() : this.voteDown();
   },
+
   voteDown: function(){
     $('.voting-result-text')
       .text("You voted for "+ this.vine2.escape('vine_author') +"'s vine.");
-
+    debugger
     this.renderPollChart(this.vine1, this.vine2);
 
     setTimeout(
