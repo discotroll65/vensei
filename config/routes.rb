@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :api do
-  get 'vines/show'
-  end
 
   root 'static_pages#root'
   resource :session, only:[:new, :create, :destroy]
@@ -9,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {format: :json} do
     resources :vines, only:[:create, :index, :show]
+    resources :battles, only: [:index]
   end
 
 end

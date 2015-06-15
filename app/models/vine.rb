@@ -4,4 +4,16 @@ class Vine < ActiveRecord::Base
 
   belongs_to :vine_author
 
+  has_many(
+    :challenged_battles,
+    class_name: "Battle",
+    foreign_key: :challenger_vine_id
+  )
+
+  has_many(
+    :accepted_battles,
+    class_name: "Battle",
+    foreign_key: :acceptor_vine_id
+  )
+
 end

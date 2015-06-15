@@ -19,6 +19,7 @@ parsed_vines = parsed_vines.map do |vine_url|
   vine_url.strip
 end
 
+#Method to also Seed your Vine authors
 def get_vine_author(response_vine)
   vine_author = VineAuthor.find_by(vine_username: response_vine[:vine_author])
   if !vine_author
@@ -31,6 +32,7 @@ def get_vine_author(response_vine)
   vine_author
 end
 
+#Seed your vines
 parsed_vines.each do |vine_url|
   response_vine = TwitterVine::Client.search(vine_url, {count: 1})[0]
 
@@ -43,7 +45,21 @@ parsed_vines.each do |vine_url|
       text: response_vine[:text],
       thumbnail_url: response_vine[:vine_thumbnail]
     }
-    
+
     vine_author.vines << Vine.create(new_vine)
   end
+end
+
+
+#Also Seed Battles
+vine_array = Vine.all.to_a
+vine_array.shuffle
+while vine_array.length >= 2
+  vine1 = vine_array.pop
+  vine2 = vine_array.pop
+  sorted_vines = [vine1, vine2].sort{|x,y| x.id <=> y.id}
+  Battle.create!(
+    challenger_vine_id: sorted_vines[0].id,
+    acceptor_vine_id: sorted_vines[1].id
+  )
 end
