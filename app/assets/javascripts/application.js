@@ -13,8 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.serializejson
-//= require Chart.Bar
-//= underscore
+//= require Chart
+//= require Chart.HorizontalBar
 //= require underscore
 //= require backbone
 //= require bootstrap
