@@ -1,0 +1,3 @@
+Vensei.Mixins.Movable = {
+  
+}

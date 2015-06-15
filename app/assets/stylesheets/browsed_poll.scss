@@ -1,0 +1,28 @@
+.poll-content{
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: fixed;
+  background: rgba(0,250, 0, .3);
+}
+
+.browsed-poll{
+  background: aliceblue;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 90%;
+  height: 90%;
+  position: fixed;
+}
+
+.poll-content.polling{
+  z-index: 60;
+}
+
+.poll-content.away{
+  z-index: -5;
+}

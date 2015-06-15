@@ -1,0 +1,24 @@
+<div class="row">
+  <span class="prompt">
+    <h1>
+      Which Vine is Funnier?
+    </h1>
+    <h2 class="key-vote-prompt">
+      Vote with arrow keys
+    </h2>
+  </span>
+
+  <span class="replay btn circle">
+    <h1>Replay</h1>
+  </span>
+
+  <div class="voting-result">
+    <h1 class="voting-result-text"></h1>
+  </div>
+</div>
+
+  <%= JST['polls/pollVineVid']({vine: vine1, number: 1}) %>
+
+  <%= JST['polls/pollVineVid']({vine: vine2, number: 2}) %>
+
+</div>

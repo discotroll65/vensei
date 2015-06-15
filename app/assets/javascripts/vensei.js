@@ -3,6 +3,7 @@ window.Vensei = {
   Collections: {},
   Views: {},
   Routers: {},
+  Mixins: {},
   initialize: function() {
     var router = new Vensei.Routers.Router({
       $rootEl: $("#content")

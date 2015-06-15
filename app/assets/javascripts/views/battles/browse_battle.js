@@ -6,8 +6,6 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   initialize: function(){
     this.setupBattle();
     this.listenTo(this.vines, 'sync', this.setupBattle);
-
-    
   },
 
   setupBattle: function(){
@@ -29,7 +27,9 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       vine1: this.vine1,
       vine2: this.vine2
     });
+
     this.$el.html(content);
+    this.addBrowsedPollView();
     this.attachSubviews();
     if(this.vines.length > 0){
       setTimeout(this.moveVine.bind(this, 1), 50);
@@ -43,7 +43,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   },
 
   events: {
-    "transitionend .vine" : "playVine",
+    "transitionend .vine.playing" : "playVine",
     "click .replay" : "replayCurrentVines"
   },
 
@@ -78,10 +78,8 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     var $target = $(this);
     this.removeEventListener('ended', that.handleVineEnd.bind(this, that));
     if ($(this).attr('class').split(" ").indexOf("vine-vid-1") === -1){
-      $('.vine-2').removeClass('playing');
-      $('.vine-2').addClass('done');
-      $('.vine-1').removeClass('playing');
-      $('.vine-1').addClass('done');
+      $('.poll-content').removeClass('away');
+      $('.poll-content').addClass('polling');
       $('body').keydown(that.checkKey.bind(that));
 
     } else {
@@ -126,13 +124,29 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   },
 
   nextTwoVines: function(){
+    this.removeBrowsedPollView();
     this.setupBattle();
   },
 
+  addBrowsedPollView: function(){
+    this.browsedPollView = new Vensei.Views.BrowsedPoll({
+      vine1: this.vine1,
+      vine2: this.vine2
+    });
+
+    this.addSubview('.poll-content', this.browsedPollView);
+  },
+
+  removeBrowsedPollView: function(){
+    this.removeSubview('.poll-content', this.browsedPollView);
+  },
+
   replayCurrentVines: function(){
-    $('.vine-1').removeClass('done').addClass('away');
-    $('.vine-2').removeClass('done').addClass('away');
-    setTimeout(this.moveVine.bind(this, 1), 0);
+    $('.poll-content').removeClass('polling');
+    $('.poll-content').addClass('away');
+    $('.vine-1').removeClass('playing').addClass('away');
+    $('.vine-2').removeClass('playing').addClass('away');
+    setTimeout(this.moveVine.bind(this, 1), 50);
   },
 
   addSourceToVideo: function(element, src, type) {
