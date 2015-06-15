@@ -4,10 +4,6 @@
   width: 90%;
 }
 
-.voting-result-text{
-  -webkit-animation: fadein 1s;
-}
-
 @keyframes fadein {
   from { opacity: 0; }
   to   { opacity: 1; }
@@ -33,43 +29,16 @@
     position: static;
   }
 
-  .prompt{
-    padding: 94px;
-
-    h1, h2{
-      margin: 0;
-      text-align: center;
-    }
-  }
-
   h1.vine-author{
     font-size: 25px;
-    overflow: overlay;
   }
-
-  .replay {
-    background: aliceblue;
-    width: 150px;
-    height: 150px;
-    display: block;
-    position: relative;
-    margin: auto;
-
-    h1{
-      position: absolute;
-      top: 55px;
-      left: 20px;
-      padding: 0;
-    }
-  }
-
 
   // ********Vine Animation************
   .vine{
     background: palegoldenrod;
     position: absolute;
     margin: auto;
-    height: 450px;
+    height: 750px;
     width: 644px;
     transition: top 500ms ease;
     p {

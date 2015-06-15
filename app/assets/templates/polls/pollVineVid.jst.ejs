@@ -1,7 +1,25 @@
+<h1 class="vine-author vine-author-<%= number %>" >
+  More vines by
+  <a
+    class="vine-author-link vine-author-link-<%= number %>"
+    href="<%= vine.escape('author_profile_url') %>"
+  >
+    <%= vine.escape('vine_author') %>
+  </a>
+</h1>
+
 <video
   controls
   class="poll-vine-vid-<%= number %> poll-vine-vid"
-  width="200" height="200"
+  width="250" height="250"
   src="<%= vine.escape('src_url') %>"
   >
 </video>
+
+<p class="vine-text">
+  <a
+    class="vine-text-link vine-text-link-<%= number %>"
+    href="<%= vine.escape('vine_url') %>">
+    <%= vine.escape('text') %>
+  </a>
+</p>

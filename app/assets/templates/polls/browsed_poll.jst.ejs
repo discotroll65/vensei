@@ -6,19 +6,28 @@
     <h2 class="key-vote-prompt">
       Vote with arrow keys
     </h2>
+
+    <span class="replay btn circle">
+      <h1>Replay</h1>
+    </span>
+    
   </span>
 
-  <span class="replay btn circle">
-    <h1>Replay</h1>
-  </span>
 
   <div class="voting-result">
     <h1 class="voting-result-text"></h1>
   </div>
 </div>
 
-  <%= JST['polls/pollVineVid']({vine: vine1, number: 1}) %>
+<div class="row">
+  <div class="poll-vine-vids col-md-4">
+    <%= JST['polls/pollVineVid']({vine: vine1, number: 1}) %>
 
-  <%= JST['polls/pollVineVid']({vine: vine2, number: 2}) %>
+    <%= JST['polls/pollVineVid']({vine: vine2, number: 2}) %>
+  </div>
+
+  <div class="poll-chart col-md-8">
+
+  </div>
 
 </div>

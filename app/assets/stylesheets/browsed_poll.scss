@@ -7,6 +7,34 @@
   background: rgba(0,250, 0, .3);
 }
 
+.prompt{
+  padding: 45px;
+  display: block;
+
+  h1, h2{
+    margin: 0;
+    text-align: center;
+  }
+  .replay {
+    background: rgba(0, 250, 0, .3);
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin: auto;
+    position: absolute;
+    z-index: 42;
+    top: 5px;
+    right: 10px;
+
+    h1{
+      position: absolute;
+      top: 55px;
+      left: 20px;
+      padding: 0;
+    }
+  }
+}
+
 .browsed-poll{
   background: aliceblue;
   margin: auto;
@@ -25,4 +53,9 @@
 
 .poll-content.away{
   z-index: -5;
+}
+
+.poll-chart{
+  height: 685px;
+  background: palegoldenrod;
 }
