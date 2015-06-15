@@ -7,6 +7,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     this.setupBattle();
     this.listenTo(this.vines, 'sync', this.setupBattle);
 
+    
   },
 
   setupBattle: function(){
@@ -82,7 +83,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       $('.vine-1').removeClass('playing');
       $('.vine-1').addClass('done');
       $('body').keydown(that.checkKey.bind(that));
-      // setTimeout(that.nextTwoVines.bind(that), 500);
+
     } else {
       that.moveVine(2);
     }

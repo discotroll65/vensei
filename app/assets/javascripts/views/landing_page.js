@@ -11,7 +11,7 @@ Vensei.Views.LandingPage = Backbone.CompositeView.extend({
   className: 'landing-page',
 
   initialize: function(){
-    var liveBattle = new Vensei.Views.LiveBattle();
-    this.addSubview('.landing-live-battle', liveBattle);
+    var savedPoll = new Vensei.Views.SavedPoll();
+    this.addSubview('.landing-saved-poll', savedPoll);
   }
 });
