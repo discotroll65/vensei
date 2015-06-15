@@ -24,7 +24,6 @@
 
   .vine-container{
     height: 550px;
-    // background: red;
     padding: 0;
     position: static;
   }
@@ -79,7 +78,7 @@
   }
 
   .vine.playing{
-    top: 0;
+    top: 35px;
     left: 50%;
     margin-left: -322px;
     position: absolute;

@@ -1,11 +1,13 @@
 <div class="row">
   <span class="prompt">
-    <h1>
-      Which Vine is Funnier?
-    </h1>
-    <h2 class="key-vote-prompt">
-      Vote w/ up and down arrow or by clicking button
-    </h2>
+    <div class="vote-directions">
+      <h1>
+        Which Vine is Funnier?
+      </h1>
+      <h2 class="key-vote-prompt">
+        Vote by button or pressing up / down arrow
+      </h2>
+    </div>
 
     <span class="replay btn circle">
       <h1>Replay</h1>
@@ -20,7 +22,7 @@
 </div>
 
 <div class="row poll-vines">
-  <div class="poll-vine-vids col-md-4">
+  <div class="poll-vine-vids col-xs-4">
     <%= JST['polls/pollVineVid']({vine: vine1, number: 1}) %>
 
     <hr class="vid-divider">
@@ -28,7 +30,7 @@
     <%= JST['polls/pollVineVid']({vine: vine2, number: 2}) %>
   </div>
 
-  <div class="poll-chart col-md-8">
+  <div class="poll-chart col-xs-8">
 
   </div>
 

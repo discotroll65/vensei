@@ -46,7 +46,8 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
 
   events: {
     "transitionend .vine.playing" : "playVine",
-    "click .replay" : "replayCurrentVines"
+    "click .replay" : "replayCurrentVines",
+    "click .vote" : "voteFromClick"
   },
 
   playVine: function (event){
@@ -92,7 +93,9 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   checkKey: function(event){
     // left arrow keycode = 37
     // right arrow keycode = 39
-    if (event.keyCode === 39 || event.keyCode === 37){
+    // up = 38
+    // down = 40
+    if (event.keyCode === 38 || event.keyCode === 40){
       this.vote(event.keyCode);
       $('body').off('keydown');
       setTimeout(this.nextTwoVines.bind(this), 2000);
@@ -100,10 +103,10 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   },
 
   vote: function(keycode){
-    (keycode === 39) ? this.voteRight() : this.voteLeft();
+    (keycode === 38) ? this.voteUp() : this.voteDown();
   },
 
-  voteRight: function(){
+  voteDown: function(){
     $('.voting-result-text')
       .text("You voted for "+ this.vine2.escape('vine_author') +"'s vine.");
     setTimeout(
@@ -114,7 +117,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     console.log("voted right");
   },
 
-  voteLeft: function(){
+  voteUp: function(){
     $('.voting-result-text')
       .text("You voted for "+ this.vine1.escape('vine_author') +"'s vine.");
     setTimeout(
@@ -123,6 +126,18 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       }, 2000
     );
     console.log("voted left");
+  },
+
+  voteFromClick: function(event){
+    event.preventDefault();
+    $('body').off('keydown');
+    var $target = $(event.currentTarget);
+    if ($target.attr('class').split(" ").indexOf("vote-1") === -1){
+      this.voteDown();
+    } else{
+      this.voteUp();
+    }
+    setTimeout(this.nextTwoVines.bind(this), 2000);
   },
 
   nextTwoVines: function(){
