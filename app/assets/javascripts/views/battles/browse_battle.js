@@ -29,7 +29,9 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     });
 
     this.$el.html(content);
-    this.addBrowsedPollView();
+
+    this.resetBrowsedPollView();
+
     this.attachSubviews();
     if(this.vines.length > 0){
       setTimeout(this.moveVine.bind(this, 1), 50);
@@ -139,6 +141,11 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
 
   removeBrowsedPollView: function(){
     this.removeSubview('.poll-content', this.browsedPollView);
+  },
+
+  resetBrowsedPollView: function(){
+    this.browsedPollView && this.removeBrowsedPollView();
+    this.addBrowsedPollView();
   },
 
   replayCurrentVines: function(){

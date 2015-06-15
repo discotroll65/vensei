@@ -4,13 +4,13 @@
       Which Vine is Funnier?
     </h1>
     <h2 class="key-vote-prompt">
-      Vote with arrow keys
+      Vote w/ up and down arrow or by clicking button
     </h2>
 
     <span class="replay btn circle">
       <h1>Replay</h1>
     </span>
-    
+
   </span>
 
 
@@ -19,9 +19,11 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row poll-vines">
   <div class="poll-vine-vids col-md-4">
     <%= JST['polls/pollVineVid']({vine: vine1, number: 1}) %>
+
+    <hr class="vid-divider">
 
     <%= JST['polls/pollVineVid']({vine: vine2, number: 2}) %>
   </div>

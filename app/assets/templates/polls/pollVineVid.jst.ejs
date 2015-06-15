@@ -1,5 +1,10 @@
 <h1 class="vine-author vine-author-<%= number %>" >
-  More vines by
+  <a
+    class="vine-text-link vine-text-link-<%= number %>"
+    href="<%= vine.escape('vine_url') %>">
+    Vine
+  </a>
+   by
   <a
     class="vine-author-link vine-author-link-<%= number %>"
     href="<%= vine.escape('author_profile_url') %>"
@@ -16,10 +21,6 @@
   >
 </video>
 
-<p class="vine-text">
-  <a
-    class="vine-text-link vine-text-link-<%= number %>"
-    href="<%= vine.escape('vine_url') %>">
-    <%= vine.escape('text') %>
-  </a>
-</p>
+<button class="btn btn-success vote vote-<%= number %>">
+  Vote for this vine!
+</button>
