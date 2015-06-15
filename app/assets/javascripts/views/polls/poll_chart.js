@@ -14,7 +14,7 @@ Vensei.Views.PollChart = Backbone.View.extend({
     var content = this.template();
     this.$el.html(content);
     this.canvas = this.$('#live-poll-chart')[0];
-    setTimeout(this.drawChart.bind(this, this.canvas, [70,50]), 0);
+    setTimeout(this.drawChart.bind(this, this.canvas, [0,0]), 0);
     return this;
   },
 
@@ -28,7 +28,7 @@ Vensei.Views.PollChart = Backbone.View.extend({
           strokeColor: "rgba(0,220,0,0.8)",
           highlightFill: "rgba(0,220,0,0.75)",
           highlightStroke: "rgba(0,220,0,1)",
-          data: [70, 50]
+          data: vineVoteArray
         }
       ]
     };

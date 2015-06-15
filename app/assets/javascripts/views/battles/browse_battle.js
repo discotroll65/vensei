@@ -105,10 +105,12 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   vote: function(keycode){
     (keycode === 38) ? this.voteUp() : this.voteDown();
   },
-
   voteDown: function(){
     $('.voting-result-text')
       .text("You voted for "+ this.vine2.escape('vine_author') +"'s vine.");
+
+    this.renderPollChart(this.vine1, this.vine2);
+
     setTimeout(
       function(){
         $('.voting-result-text').empty();
@@ -120,6 +122,10 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   voteUp: function(){
     $('.voting-result-text')
       .text("You voted for "+ this.vine1.escape('vine_author') +"'s vine.");
+
+      this.renderPollChart(this.vine1, this.vine2);
+
+
     setTimeout(
       function(){
         $('.voting-result-text').empty();
@@ -143,6 +149,13 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   nextTwoVines: function(){
     this.removeBrowsedPollView();
     this.setupBattle();
+  },
+
+  renderPollChart: function(vine1, vine2){
+    var pollChartView = this.browsedPollView.subviews(
+      '.poll-chart-container')._wrapped[0];
+
+    pollChartView.drawChart( pollChartView.canvas, [70,50] );
   },
 
   addBrowsedPollView: function(){
