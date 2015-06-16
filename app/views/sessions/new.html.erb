@@ -9,5 +9,22 @@
     ) %>
 
     <%= button_to "Register", new_user_url, method: :get %>
+
+
+    <form class="guest-login" action="<%= session_url %>" method="post">
+      <%= csrf_tag %>
+
+        <input type="hidden" class="form-control"
+          type="text" name="user[username]" value="guest">
+        <input type="hidden"
+          class="form-control" type="password" name="user[password]"
+          value="password"
+          >
+
+      <input class="btn btn-primary guest-signin" type="submit" value="Sign in as Guest">
+    </form>
+
+
+
   </div>
 </div>
