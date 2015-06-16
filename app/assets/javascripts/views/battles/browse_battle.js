@@ -113,8 +113,6 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   },
 
   voteDown: function(){
-    $('.voting-result-text')
-      .text("You voted for "+ this.vine2.escape('vine_author') +"'s vine.");
     this.renderPollChart(this.vine2);
 
     setTimeout(
@@ -126,10 +124,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   },
 
   voteUp: function(){
-    $('.voting-result-text')
-      .text("You voted for "+ this.vine1.escape('vine_author') +"'s vine.");
-
-      this.renderPollChart(this.vine1);
+    this.renderPollChart(this.vine1);
 
 
     setTimeout(
@@ -186,20 +181,24 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     }
 
     winner = Math.max(vine1Votes, vine2Votes);
-    this.handleScore(votes_choice, winner);
+    this.handleScore(votes_choice, winner, vine_vote);
 
     return [vine2Votes, vine1Votes];
   },
 
-  handleScore: function(votes_choice, winner){
+  handleScore: function(votes_choice, winner, vine_vote){
+    var message;
     if(votes_choice === winner){
+      message = "Most folks also picked "+ vine_vote.escape('vine_author') +"'s vine! + 3 points";
+
       this.user.set("score", this.user.get("score") + 3);
       this.user.save();
     }else {
+      message = "Most think"+ vine_vote.escape('vine_author') +"'s vine not as funny. - 5 points";
       this.user.set("score", this.user.get("score") - 5);
       this.user.save();
     }
-
+    $('.key-vote-prompt').text(message);
   },
 
   addBrowsedPollView: function(){
