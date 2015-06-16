@@ -5,7 +5,9 @@ class Api::BattlesController < ApplicationController
   end
 
   def index
-    @battles = Battle.includes(:challenger_vine, :acceptor_vine).all
+    @battles = Battle.includes(
+      {challenger_vine: :vine_author}, {acceptor_vine: :vine_author}
+    ).all
     render :index
   end
 

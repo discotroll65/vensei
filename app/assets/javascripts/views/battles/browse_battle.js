@@ -4,15 +4,18 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   className: "browse-battles",
 
   initialize: function(){
-    this.setupBattle();
-    this.listenTo(this.vines, 'sync', this.setupBattle);
+    this.collection.length && this.setupBattle();
+    this.listenTo(this.collection, 'sync', this.setupBattle);
   },
 
   setupBattle: function(){
     this.collection.reset(this.collection.shuffle(), {silent:true});
-    this.vines = this.collection;
-    this.vine1 = this.collection.shift();
-    this.vine2 = this.collection.shift();
+    this.battles = this.battles || this.collection;
+
+    this.battle = this.battles.shift();
+    this.vines = this.battle.vines();
+    this.vine1 = this.vines.shift();
+    this.vine2 = this.vines.shift();
 
     this.render();
   },
@@ -33,7 +36,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     this.resetBrowsedPollView();
 
     this.attachSubviews();
-    if(this.vines.length > 0){
+    if(this.collection.length > 0){
       setTimeout(this.moveVine.bind(this, 1), 50);
     }
     return this;
@@ -105,11 +108,10 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   vote: function(keycode){
     (keycode === 38) ? this.voteUp() : this.voteDown();
   },
-
   voteDown: function(){
     $('.voting-result-text')
       .text("You voted for "+ this.vine2.escape('vine_author') +"'s vine.");
-    debugger
+
     this.renderPollChart(this.vine1, this.vine2);
 
     setTimeout(

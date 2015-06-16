@@ -9,20 +9,20 @@ Vensei.Routers.Router = Backbone.Router.extend({
   },
 
   landingPage: function(){
-    this.vines = new Vensei.Collections.Vines();
-    this.vines.fetch();
+    this.battles = new Vensei.Collections.Battles();
+    this.battles.fetch();
     var view = new Vensei.Views.LandingPage();
     this._swapView(view);
   },
 
   browseBattles: function(){
     if(!this.vines){
-      this.vines = new Vensei.Collections.Vines();
-      this.vines.fetch();
+      this.battles = new Vensei.Collections.Battles();
+      this.battles.fetch();
     }
-    
+
     var view = new Vensei.Views.BrowseBattles({
-      collection: this.vines
+      collection: this.battles
     });
     this._swapView(view);
   },
