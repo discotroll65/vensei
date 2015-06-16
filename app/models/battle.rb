@@ -1,4 +1,3 @@
-require 'pry-byebug'
 class Battle < ActiveRecord::Base
   has_many :polls
 
