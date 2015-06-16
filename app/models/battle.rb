@@ -42,7 +42,6 @@ class Battle < ActiveRecord::Base
       )
       self.proto_poll = proto_poll
       self.save
-      binding.pry unless self.proto_poll
     end
 
   end

@@ -19,11 +19,12 @@ TwitterVine::Client.setup do |config|
   config.oauth_secret = "#{ENV["TWITTER_OAUTH_SECRET"]}"
 end
 
-parsed_vines = File.readlines('bin/very_few_urls_of_funnyvines')[0].split(',')
+parsed_vines = File.readlines('bin/urls_of_funnyvines')[0].split(',')
 parsed_vines = parsed_vines.map do |vine_url|
   vine_url.gsub!("\"", "")
   vine_url.strip
 end
+parsed_vines.uniq!.length
 
 #Method to also Seed your Vine authors
 def get_vine_author(response_vine)
@@ -39,7 +40,6 @@ def get_vine_author(response_vine)
 end
 
 #Seed your vines
-puts "\n\n\n\n\n\n\n #{parsed_vines.length}\n\n\n\n\n\n\n\n\n\n"
 parsed_vines.each_with_index do |vine_url, index|
   response_vine = TwitterVine::Client.search(vine_url, {count: 1})[0]
   if response_vine
@@ -51,6 +51,7 @@ parsed_vines.each_with_index do |vine_url, index|
       text: response_vine[:text],
       thumbnail_url: response_vine[:vine_thumbnail]
     }
+    test_vine = Vine.new(new_vine)
     vine_author.vines << Vine.create(new_vine)
 
   end
