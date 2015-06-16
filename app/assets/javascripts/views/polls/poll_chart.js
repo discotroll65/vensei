@@ -18,16 +18,16 @@ Vensei.Views.PollChart = Backbone.View.extend({
     return this;
   },
 
-  chartData: function(vineVoteArray){
+  chartData: function(vineVoteArray, rgb){
     var data = {
       labels: ["Vine2", "Vine1"],
       datasets: [
         {
           label: "Vine Battle",
-          fillColor: "rgba(0,220,0,0.5)",
-          strokeColor: "rgba(0,220,0,0.8)",
-          highlightFill: "rgba(0,220,0,0.75)",
-          highlightStroke: "rgba(0,220,0,1)",
+          fillColor: "rgba("+ rgb +",0.5)",
+          strokeColor: "rgba("+ rgb +",0.8)",
+          highlightFill: "rgba("+ rgb +",0.75)",
+          highlightStroke: "rgba("+ rgb +",1)",
           data: vineVoteArray
         }
       ]
@@ -35,10 +35,10 @@ Vensei.Views.PollChart = Backbone.View.extend({
     return data;
   },
 
-  drawChart: function(canvas, vineVoteArray){
+  drawChart: function(canvas, vineVoteArray, rgb){
     var ctx = canvas.getContext("2d");
     var VinePoll = new Chart(ctx).HorizontalBar(
-      this.chartData(vineVoteArray)
+      this.chartData(vineVoteArray, rgb)
     );
   }
 

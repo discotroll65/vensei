@@ -4,7 +4,17 @@
   right: 0;
   left: 0;
   position: fixed;
+}
+
+.poll-content.no-guess{
+  background: rgba(0,0, 250, .3);
+}
+.poll-content.winner{
   background: rgba(0,250, 0, .3);
+}
+.poll-content.loser{
+  background: rgba(250, 0, 0, .3);
+
 }
 
 .prompt{
@@ -16,7 +26,7 @@
     text-align: center;
   }
   .replay {
-    background: rgba(0, 250, 0, .3);
+    // background: rgba(0, 250, 0, .3);
     width: 150px;
     height: 100px;
     display: block;
@@ -32,6 +42,16 @@
       left: 20px;
       padding: 0;
     }
+  }
+  .replay.no-guess{
+    background: rgba(0, 0, 250, .3);
+
+  }
+  .replay.winner{
+    background: rgba(0, 250, 0, .3);
+  }
+  .replay.loser{
+    background: rgba(250, 0, 0, .3);
   }
 }
 

@@ -7,6 +7,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     this.user = options.user;
     this.collection.length && this.setupBattle();
     this.listenTo(this.collection, 'sync', this.setupBattle);
+    this.chartRgb = "0, 250, 0";
   },
 
   setupBattle: function(){
@@ -155,8 +156,10 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   renderPollChart: function(vine_vote){
     var pollChartView = this.browsedPollView.subviews(
       '.poll-chart-container')._wrapped[0];
-    data = this.handleVineVote(vine_vote);
-    pollChartView.drawChart( pollChartView.canvas, data );
+    options = this.handleVineVote(vine_vote);
+    pollChartView.drawChart(
+      pollChartView.canvas, options.data, options.chartColor
+    );
   },
 
   handleVineVote: function(vine_vote){
@@ -183,18 +186,27 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     winner = Math.max(vine1Votes, vine2Votes);
     this.handleScore(votes_choice, winner, vine_vote);
 
-    return [vine2Votes, vine1Votes];
+    return {data: [vine2Votes, vine1Votes], chartColor: this.chartRgb};
   },
 
   handleScore: function(votes_choice, winner, vine_vote){
     var message;
     if(votes_choice === winner){
       message = "Most folks also picked "+ vine_vote.escape('vine_author') +"'s vine! + 3 points";
+      $('.poll-content').removeClass("no-guess").addClass("winner");
+      $('button.vote').removeClass("btn-primary").addClass("btn-success");
+      $('.replay').removeClass("no-guess").addClass("winner");
+      this.chartRgb = "0, 250, 0"
 
       this.user.set("score", this.user.get("score") + 3);
       this.user.save();
     }else {
       message = "Most think"+ vine_vote.escape('vine_author') +"'s vine not as funny. - 5 points";
+      $('.poll-content').removeClass("no-guess").addClass("loser");
+      $('button.vote').removeClass("btn-primary").addClass("btn-danger");
+      $('.replay').removeClass("no-guess").addClass("loser");
+      this.chartRgb = "250, 0, 0";
+
       this.user.set("score", this.user.get("score") - 5);
       this.user.save();
     }
