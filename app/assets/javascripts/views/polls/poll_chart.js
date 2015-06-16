@@ -20,7 +20,7 @@ Vensei.Views.PollChart = Backbone.View.extend({
 
   chartData: function(vineVoteArray){
     var data = {
-      labels: ["Vine1", "Vine2"],
+      labels: ["Vine2", "Vine1"],
       datasets: [
         {
           label: "Vine Battle",

@@ -9,7 +9,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   },
 
   setupBattle: function(){
-    this.collection.reset(this.collection.shuffle(), {silent:true});
+    // this.collection.reset(this.collection.shuffle(), {silent:true});
     this.battles = this.battles || this.collection;
 
     this.battle = this.battles.shift();
@@ -108,11 +108,12 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   vote: function(keycode){
     (keycode === 38) ? this.voteUp() : this.voteDown();
   },
+
   voteDown: function(){
     $('.voting-result-text')
       .text("You voted for "+ this.vine2.escape('vine_author') +"'s vine.");
 
-    this.renderPollChart(this.vine1, this.vine2);
+    this.renderPollChart(this.vine2);
 
     setTimeout(
       function(){
@@ -126,7 +127,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     $('.voting-result-text')
       .text("You voted for "+ this.vine1.escape('vine_author') +"'s vine.");
 
-      this.renderPollChart(this.vine1, this.vine2);
+      this.renderPollChart(this.vine1);
 
 
     setTimeout(
@@ -154,11 +155,29 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     this.setupBattle();
   },
 
-  renderPollChart: function(vine1, vine2){
+  renderPollChart: function(vine_vote){
     var pollChartView = this.browsedPollView.subviews(
       '.poll-chart-container')._wrapped[0];
+    data = this.handleVineVote(vine_vote);
+    pollChartView.drawChart( pollChartView.canvas, data );
+  },
 
-    pollChartView.drawChart( pollChartView.canvas, [70,50] );
+  handleVineVote: function(vine_vote){
+    var vine1Votes, vine2Votes;
+    var vote  = new Vensei.Models.PollVote({
+      user_id: window.CURRENT_USER_ID,
+      vine_vote_id: vine_vote.id,
+      poll_id: this.battle.get('proto_poll_id')
+    });
+    vote.save();
+
+    var battleVines = this.battle.vines();
+    vine1Votes = this.vine1.get('total_votes');
+    vine2Votes = this.vine2.get('total_votes');
+
+    (vine_vote === this.vine1) ? vine1Votes++ : vine2Votes++ ;
+
+    return [vine2Votes, vine1Votes];
   },
 
   addBrowsedPollView: function(){

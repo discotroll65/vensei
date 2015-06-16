@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :vines, only:[:create, :index, :show]
     resources :battles, only: [:index]
+    resources :polls, only: [:index, :show]
+    resources :poll_votes, only: [:create]
   end
 
 end
