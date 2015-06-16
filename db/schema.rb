@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150615210759) do
+ActiveRecord::Schema.define(version: 20150616012135) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,9 +21,11 @@ ActiveRecord::Schema.define(version: 20150615210759) do
     t.integer  "acceptor_vine_id",   null: false
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
+    t.integer  "proto_poll_id"
   end
 
   add_index "battles", ["challenger_vine_id", "acceptor_vine_id"], name: "index_battles_on_challenger_vine_id_and_acceptor_vine_id", unique: true, using: :btree
+  add_index "battles", ["proto_poll_id"], name: "index_battles_on_proto_poll_id", unique: true, using: :btree
 
   create_table "poll_votes", force: :cascade do |t|
     t.integer  "user_id",      null: false
@@ -37,12 +39,12 @@ ActiveRecord::Schema.define(version: 20150615210759) do
   add_index "poll_votes", ["vine_vote_id"], name: "index_poll_votes_on_vine_vote_id", using: :btree
 
   create_table "polls", force: :cascade do |t|
-    t.string   "name",                            null: false
-    t.integer  "user_id",                         null: false
-    t.integer  "battle_id",                       null: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.string   "presentation_poll", default: "f", null: false
+    t.string   "name",                              null: false
+    t.integer  "user_id",                           null: false
+    t.integer  "battle_id",                         null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.boolean  "presentation_poll", default: false, null: false
   end
 
   add_index "polls", ["battle_id"], name: "index_polls_on_battle_id", using: :btree

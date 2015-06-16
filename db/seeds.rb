@@ -6,6 +6,12 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+proto_user = User.create(
+  username: "proto_user",
+  password: SecureRandom::urlsafe_base64
+)
+guest = User.create(username: "guest", password: "password")
+
 TwitterVine::Client.setup do |config|
   config.api_key = "#{ENV["TWITTER_API_KEY"]}"
   config.api_secret = "#{ENV["TWITTER_API_SECRET"]}"
@@ -13,7 +19,7 @@ TwitterVine::Client.setup do |config|
   config.oauth_secret = "#{ENV["TWITTER_OAUTH_SECRET"]}"
 end
 
-parsed_vines = File.readlines('bin/urls_of_funnyvines')[0].split(',')
+parsed_vines = File.readlines('bin/very_few_urls_of_funnyvines')[0].split(',')
 parsed_vines = parsed_vines.map do |vine_url|
   vine_url.gsub!("\"", "")
   vine_url.strip
@@ -33,9 +39,9 @@ def get_vine_author(response_vine)
 end
 
 #Seed your vines
-parsed_vines.each do |vine_url|
+puts "\n\n\n\n\n\n\n #{parsed_vines.length}\n\n\n\n\n\n\n\n\n\n"
+parsed_vines.each_with_index do |vine_url, index|
   response_vine = TwitterVine::Client.search(vine_url, {count: 1})[0]
-
   if response_vine
     vine_author = get_vine_author(response_vine)
 
@@ -45,8 +51,8 @@ parsed_vines.each do |vine_url|
       text: response_vine[:text],
       thumbnail_url: response_vine[:vine_thumbnail]
     }
-
     vine_author.vines << Vine.create(new_vine)
+
   end
 end
 
@@ -58,6 +64,11 @@ while vine_array.length >= 2
   vine1 = vine_array.pop
   vine2 = vine_array.pop
   sorted_vines = [vine1, vine2].sort{|x,y| x.id <=> y.id}
+
+  testbat = Battle.new(challenger_vine_id: sorted_vines[0].id,
+  acceptor_vine_id: sorted_vines[1].id)
+
+  binding.pry if !testbat.valid?
   Battle.create!(
     challenger_vine_id: sorted_vines[0].id,
     acceptor_vine_id: sorted_vines[1].id

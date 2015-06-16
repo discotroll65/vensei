@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/discotroll65/twitter-vine.git
-  revision: 4768133c2cdc1a6aeaba6b4960baf1792c19c782
+  revision: 9ab863d1cf9b19b5d10ddf8f4ab464223cb098d7
   specs:
     twitter-vine (0.1.9)
       faraday
@@ -99,7 +99,7 @@ GEM
       http_parser.rb (~> 0.6.0)
     http_parser.rb (0.6.0)
     i18n (0.7.0)
-    jbuilder (2.2.16)
+    jbuilder (2.3.0)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
     jquery-rails (4.0.3)
