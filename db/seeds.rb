@@ -66,10 +66,6 @@ while vine_array.length >= 2
   vine2 = vine_array.pop
   sorted_vines = [vine1, vine2].sort{|x,y| x.id <=> y.id}
 
-  testbat = Battle.new(challenger_vine_id: sorted_vines[0].id,
-  acceptor_vine_id: sorted_vines[1].id)
-
-  binding.pry if !testbat.valid?
   Battle.create!(
     challenger_vine_id: sorted_vines[0].id,
     acceptor_vine_id: sorted_vines[1].id
