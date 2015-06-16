@@ -7,7 +7,14 @@ class Battle < ActiveRecord::Base
     class_name: "Poll",
   )
 
+  has_many(
+    :proto_poll_voters,
+    through: :proto_poll,
+    source: :voters
+  )
+
   has_many :poll_votes, through: :polls
+  has_many :voters, through: :polls
 
 
   belongs_to(
@@ -43,7 +50,10 @@ class Battle < ActiveRecord::Base
       self.proto_poll = proto_poll
       self.save
     end
+  end
 
+  def seen_by?(user)
+    self.proto_poll_voters.include?(user)
   end
 
 
