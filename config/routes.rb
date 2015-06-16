@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :battles, only: [:index]
     resources :polls, only: [:index, :show]
     resources :poll_votes, only: [:create]
-    resources :users, only: [:show]
+    resources :users, only: [:show, :update]
   end
 
 end

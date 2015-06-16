@@ -36,11 +36,15 @@ h1 {
 #content {
   height: 100%;
   background: rgb(17, 16, 85);
+  padding-top: 77px;
 }
 
 nav.navbar {
   margin: 0;
   height: 77px;
+  position: fixed;
+  left: 0;
+  right: 0;
 }
 
 .group:after {

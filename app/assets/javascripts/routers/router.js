@@ -1,6 +1,7 @@
 Vensei.Routers.Router = Backbone.Router.extend({
   initialize: function(options){
     this.$rootEl = options.$rootEl;
+    this.user = options.user;
   },
 
   routes:{
@@ -22,8 +23,10 @@ Vensei.Routers.Router = Backbone.Router.extend({
     }
 
     var view = new Vensei.Views.BrowseBattles({
-      collection: this.battles
+      collection: this.battles,
+      user: this.user
     });
+
     this._swapView(view);
   },
 

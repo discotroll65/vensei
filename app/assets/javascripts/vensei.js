@@ -5,12 +5,19 @@ window.Vensei = {
   Routers: {},
   Mixins: {},
   initialize: function() {
+    var user = new Vensei.Models.User(
+      {id: CURRENT_USER_ID}
+    );
+    user.fetch();
+
     var router = new Vensei.Routers.Router({
-      $rootEl: $("#content")
+      $rootEl: $("#content"),
+      user: user
     });
 
     var navbar = new Vensei.Views.Navbar({
-      router: router
+      router: router,
+      user: user
     });
 
     $("#nav").html(navbar.render().$el);

@@ -7,5 +7,5 @@ class PollVote < ActiveRecord::Base
   )
 
   validates :user_id, :vine_vote_id, :poll_id, presence: true
-  validates_uniqueness_of :user_id, scope: :poll_id
+  validates :user_id, uniqueness: {scope: :poll_id}
 end

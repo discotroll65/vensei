@@ -3,7 +3,8 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
 
   className: "browse-battles",
 
-  initialize: function(){
+  initialize: function(options){
+    this.user = options.user;
     this.collection.length && this.setupBattle();
     this.listenTo(this.collection, 'sync', this.setupBattle);
   },
@@ -86,7 +87,8 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     if ($(this).attr('class').split(" ").indexOf("vine-vid-1") === -1){
       $('.poll-content').removeClass('away');
       $('.poll-content').addClass('polling');
-      $('body').keydown(that.checkKey.bind(that));
+      console.log("sensing poll key press");
+      $('body').one('keydown', that.checkKey.bind(that));
 
     } else {
       that.moveVine(2);
@@ -106,13 +108,13 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   },
 
   vote: function(keycode){
+    console.log("voting");
     (keycode === 38) ? this.voteUp() : this.voteDown();
   },
 
   voteDown: function(){
     $('.voting-result-text')
       .text("You voted for "+ this.vine2.escape('vine_author') +"'s vine.");
-
     this.renderPollChart(this.vine2);
 
     setTimeout(
@@ -163,7 +165,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   },
 
   handleVineVote: function(vine_vote){
-    var vine1Votes, vine2Votes;
+    var vine1Votes, vine2Votes, votes_choice, winner;
     var vote  = new Vensei.Models.PollVote({
       user_id: window.CURRENT_USER_ID,
       vine_vote_id: vine_vote.id,
@@ -175,9 +177,29 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     vine1Votes = this.vine1.get('total_votes');
     vine2Votes = this.vine2.get('total_votes');
 
-    (vine_vote === this.vine1) ? vine1Votes++ : vine2Votes++ ;
+    if(vine_vote === this.vine1){
+      vine1Votes++ ;
+      votes_choice = vine1Votes;
+    } else{
+      vine2Votes++ ;
+      votes_choice = vine2Votes;
+    }
+
+    winner = Math.max(vine1Votes, vine2Votes);
+    this.handleScore(votes_choice, winner);
 
     return [vine2Votes, vine1Votes];
+  },
+
+  handleScore: function(votes_choice, winner){
+    if(votes_choice === winner){
+      this.user.set("score", this.user.get("score") + 3);
+      this.user.save();
+    }else {
+      this.user.set("score", this.user.get("score") - 5);
+      this.user.save();
+    }
+
   },
 
   addBrowsedPollView: function(){

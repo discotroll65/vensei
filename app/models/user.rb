@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   attr_reader :password
 
+  has_many :poll_votes
+
   validates(
     :password_digest, :session_token, :username, presence: true, uniqueness: true
   )
