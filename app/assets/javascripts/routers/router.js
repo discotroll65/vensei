@@ -7,7 +7,21 @@ Vensei.Routers.Router = Backbone.Router.extend({
   routes:{
     '' : "landingPage",
     'browse-battles' : 'browseBattles',
-    'new-poll' : 'newPoll'
+    'new-poll' : 'newPoll',
+    'polls' :  'polls'
+  },
+
+  newPoll: function(){
+    this.myPolls({createPoll: true});
+  },
+
+  polls: function(){
+    this.myPolls({createPoll: false});
+  },
+
+  myPolls: function(options){
+    var view = new Vensei.Views.MyPolls(options);
+    this._swapView(view);
   },
 
   landingPage: function(){
@@ -29,10 +43,6 @@ Vensei.Routers.Router = Backbone.Router.extend({
     });
 
     this._swapView(view);
-  },
-
-  newPoll: function(){
-
   },
 
   _swapView: function(view){
