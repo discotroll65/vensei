@@ -25,12 +25,15 @@
   margin: auto;
   position: relative;
   top: 55px;
-  button{
+  .new-battle{
     margin: 0 50px;
   }
-  .browse-battles {
+  a{
     background: beige;
   }
+  // .browse-battles {
+  //   background: beige;
+  // }
 }
 
 // *********computer view***********
