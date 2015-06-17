@@ -11,7 +11,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   },
 
   setupBattle: function(){
-    // this.collection.reset(this.collection.shuffle(), {silent:true});
+    this.collection.reset(this.collection.shuffle(), {silent:true});
     this.battles = this.battles || this.collection;
 
     this.battle = this.battles.shift();
@@ -190,9 +190,10 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   },
 
   handleScore: function(votes_choice, winner, vine_vote){
-    var message;
+    var message, author;
+    author = vine_vote.escape('vine_author');
     if(votes_choice === winner){
-      message = "Most folks also picked "+ vine_vote.escape('vine_author') +"'s vine! + 3 points";
+      message = "Most folks also picked "+ author +"'s vine! + 3 points";
       $('.poll-content').removeClass("no-guess").addClass("winner");
       $('button.vote').removeClass("btn-primary").addClass("btn-success");
       $('.replay').removeClass("no-guess").addClass("winner");
@@ -201,7 +202,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       this.user.set("score", this.user.get("score") + 3);
       this.user.save();
     }else {
-      message = "Most think"+ vine_vote.escape('vine_author') +"'s vine not as funny. - 5 points";
+      message = "Most think"+ author +"'s vine not as funny. - 5 points";
       $('.poll-content').removeClass("no-guess").addClass("loser");
       $('button.vote').removeClass("btn-primary").addClass("btn-danger");
       $('.replay').removeClass("no-guess").addClass("loser");
