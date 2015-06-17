@@ -52,7 +52,8 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   events: {
     "transitionend .vine.playing" : "playVine",
     "click .replay" : "replayCurrentVines",
-    "click .vote" : "voteFromClick"
+    "click .vote" : "voteFromClick",
+    "click .skip" : "skipChoosing"
   },
 
   playVine: function (event){
@@ -105,7 +106,14 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       this.vote(event.keyCode);
       $('body').off('keydown');
       setTimeout(this.nextTwoVines.bind(this), 2000);
+    } else if (event.keyCode === 32){
+      this.skipChoosing();
     }
+  },
+
+  skipChoosing: function(){
+    $('body').off('keydown');
+    this.nextTwoVines();
   },
 
   vote: function(keycode){

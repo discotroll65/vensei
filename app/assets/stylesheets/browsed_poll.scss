@@ -36,8 +36,13 @@
     h1{
       position: absolute;
       top: 30px;
-      left: 20px;
       padding: 0;
+    }
+    h1.skip{
+      left: 36px;
+    }
+    h1.replay{
+      left: 20px;
     }
   }
   .skip{
