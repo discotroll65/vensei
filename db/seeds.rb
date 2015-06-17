@@ -1,23 +1,9 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 proto_user = User.create(
   username: "proto_user",
   password: SecureRandom::urlsafe_base64
 )
 guest = User.create(username: "guest", password: "password")
 
-TwitterVine::Client.setup do |config|
-  config.api_key = "#{ENV["TWITTER_API_KEY"]}"
-  config.api_secret = "#{ENV["TWITTER_API_SECRET"]}"
-  config.oauth_token = "#{ENV["TWITTER_OAUTH_TOKEN"]}"
-  config.oauth_secret = "#{ENV["TWITTER_OAUTH_SECRET"]}"
-end
 
 parsed_vines = File.readlines('bin/urls_of_funnyvines')[0].split(',')
 parsed_vines = parsed_vines.map do |vine_url|
@@ -26,35 +12,12 @@ parsed_vines = parsed_vines.map do |vine_url|
 end
 parsed_vines.uniq!.length
 
-#Method to also Seed your Vine authors
-def get_vine_author(response_vine)
-  vine_author = VineAuthor.find_by(vine_username: response_vine[:vine_author])
-  if !vine_author
-    vine_author = VineAuthor.create({
-      vine_username: response_vine[:vine_author],
-      profile_url: response_vine[:vine_author_profile_url]
-    })
-  end
-
-  vine_author
-end
 
 #Seed your vines
-parsed_vines.each_with_index do |vine_url, index|
-  response_vine = TwitterVine::Client.search(vine_url, {count: 1})[0]
-  if response_vine
-    vine_author = get_vine_author(response_vine)
+vine_client = Vine.make_vine_client
 
-    new_vine = {
-      vine_url: response_vine[:vine_url],
-      src_url: response_vine[:vine_src],
-      text: response_vine[:text],
-      thumbnail_url: response_vine[:vine_thumbnail]
-    }
-    test_vine = Vine.new(new_vine)
-    vine_author.vines << Vine.create(new_vine)
-
-  end
+parsed_vines.each do |vine_url|
+  Vine.find_or_create_by_url(vine_url, vine_client)
 end
 
 
