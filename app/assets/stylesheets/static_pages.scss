@@ -35,8 +35,11 @@
   width: 90%;
   height: 98%;
   border-radius: 3px;
-  font-size: 90px;
+  font-size: 50px;
   text-align: center;
+  .main-form{
+    margin-bottom: 45px
+  }
   input{
     height: 40%;
     width: 90%;
@@ -67,10 +70,10 @@
     font-size: 175px;
   }
   input{
-    width: 50%;
+    width: 30%;
   }
   .btn{
-    font-size: 90px;
+    font-size: 50px;
     margin: 4px;
   }
 }
