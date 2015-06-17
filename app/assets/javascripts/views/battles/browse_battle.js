@@ -219,7 +219,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       this.user.set("score", this.user.get("score") - 5);
       this.user.save();
     }
-    $('.key-vote-prompt').text(message);
+    $('.key-vote-prompt').html('<h2>' + message + '</h2>');
   },
 
   addBrowsedPollView: function(){
