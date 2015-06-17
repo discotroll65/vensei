@@ -1,26 +1,10 @@
-
-.results-carousel{
-  background: blue;
-  width: 90%;
-}
-
-@keyframes fadein {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-
-
-.replay {
-  width: 300px
-}
-
 .voting-result {
   text-align: center;
 }
 
 .browse-battles {
   height: 100%;
-  // overflow: hidden;
+  overflow: hidden;
 
   .vine-container{
     height: 550px;
@@ -38,8 +22,8 @@
     background: palegoldenrod;
     position: absolute;
     margin: auto;
-    height: 750px;
-    width: 644px;
+    height: 72vh;
+    width: 68vh;
     transition: top 500ms ease;
     p {
       font-size: 20px;

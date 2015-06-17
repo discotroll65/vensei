@@ -1,5 +1,9 @@
 <div class="row">
-  <span class="prompt">
+  <span class="replay btn no-guess col-xs-1.5">
+    <h3>Replay</h3>
+  </span>
+
+  <span class="prompt col-xs-9">
     <h1>
       Which Vine is Funnier?
     </h1>
@@ -11,28 +15,17 @@
         Push spacebar to skip
       </h2>
     </div>
-
-    <span class="replay btn circle no-guess">
-      <h1>Replay</h1>
-    </span>
-
-    <span class="skip btn circle no-guess">
-      <h1>Skip</h1>
-    </span>
-
   </span>
 
+  <span class="skip btn no-guess col-xs-1.5">
+    <h3>Skip</h3>
+  </span>
 
-  <div class="voting-result">
-    <h1 class="voting-result-text"></h1>
-  </div>
 </div>
 
 <div class="row poll-vines">
   <div class="poll-vine-vids col-xs-4">
     <%= JST['polls/pollVineVid']({vine: vine1, number: 1}) %>
-
-    <hr class="vid-divider">
 
     <%= JST['polls/pollVineVid']({vine: vine2, number: 2}) %>
   </div>

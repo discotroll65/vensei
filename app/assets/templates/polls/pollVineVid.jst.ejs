@@ -1,26 +1,9 @@
-<h1 class="vine-author vine-author-<%= number %>" >
-  <a
-    class="vine-text-link vine-text-link-<%= number %>"
-    href="<%= vine.escape('vine_url') %>">
-    Vine
-  </a>
-   by
-  <a
-    class="vine-author-link vine-author-link-<%= number %>"
-    href="<%= vine.escape('author_profile_url') %>"
-  >
-    <%= vine.escape('vine_author') %>
-  </a>
-</h1>
-
-<video
-  controls
-  class="poll-vine-vid-<%= number %> poll-vine-vid"
-  width="250" height="250"
-  src="<%= vine.escape('src_url') %>"
-  >
-</video>
-<br>
-<button class="btn btn-primary vote vote-<%= number %>">
-  Vote for this vine!
-</button>
+<div class="row">
+  <video
+    controls
+    class="poll-vine-vid-<%= number %>
+     poll-vine-vid centered"
+    src="<%= vine.escape('src_url') %>"
+    >
+  </video>
+</div>

@@ -18,52 +18,11 @@
 }
 
 .prompt{
-  padding-bottom: 45px;
   display: block;
 
   h1, h2{
     margin: 0;
     text-align: center;
-  }
-  span.btn {
-    // background: rgba(0, 250, 0, .3);
-    width: 150px;
-    height: 100px;
-    display: block;
-    margin: auto;
-    z-index: 42;
-
-    h1{
-      position: absolute;
-      top: 30px;
-      padding: 0;
-    }
-    h1.skip{
-      left: 36px;
-    }
-    h1.replay{
-      left: 20px;
-    }
-  }
-  .skip{
-    position: absolute;
-    top: 5px;
-    right: 10px;
-  }
-  .replay{
-    position: absolute;
-    top: 5px;
-    left: 10px;
-  }
-  .no-guess{
-    background: rgba(0, 0, 250, .3);
-
-  }
-  .winner{
-    background: rgba(0, 250, 0, .3);
-  }
-  .loser{
-    background: rgba(250, 0, 0, .3);
   }
 }
 
@@ -77,6 +36,44 @@
   width: 90%;
   height: 90%;
   position: fixed;
+  h1{
+    font-size: 3vw;
+  }
+  h2{
+    font-size: 2vw;
+  }
+  // font-size: 3vh;
+  span.btn {
+    // background: rgba(0, 250, 0, .3);
+    width: 11vw;
+    height: 9vh;
+    display: block;
+    margin: auto;
+    padding: 0;
+    z-index: 42;
+    float: left;
+
+    h3{
+      font-size: 3vw;
+      margin:0;
+    }
+
+  }
+
+  .no-guess{
+    background: rgba(0, 0, 250, .3);
+  }
+  .winner{
+    background: rgba(0, 250, 0, .3);
+  }
+  .loser{
+    background: rgba(250, 0, 0, .3);
+  }
+  button{
+    font-size: 2vh;
+    display: block;
+
+  }
 }
 
 .key-vote-prompt{
@@ -97,6 +94,6 @@ hr.vid-divider{
 }
 
 .poll-chart-container{
-  height: 650px;
+  height: 71vh;
   background: palegoldenrod;
 }

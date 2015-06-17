@@ -109,6 +109,9 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     } else if (event.keyCode === 32){
       this.skipChoosing();
     }
+    else {
+      $('body').one('keydown', this.checkKey.bind(this));
+    }
   },
 
   skipChoosing: function(){
@@ -205,7 +208,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       $('.poll-content').removeClass("no-guess").addClass("winner");
       $('button.vote').removeClass("btn-primary").addClass("btn-success");
       $('.no-guess').removeClass("no-guess").addClass("winner");
-      this.chartRgb = "0, 250, 0"
+      this.chartRgb = "0, 250, 0";
 
       this.user.set("score", this.user.get("score") + 3);
       this.user.save();
