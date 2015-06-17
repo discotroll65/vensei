@@ -93,6 +93,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       $('body').one('keydown', that.checkKey.bind(that));
 
     } else {
+      $('.vine-1').addClass('done');
       that.moveVine(2);
     }
   },
@@ -246,7 +247,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   replayCurrentVines: function(){
     $('.poll-content').removeClass('polling');
     $('.poll-content').addClass('away');
-    $('.vine-1').removeClass('playing').addClass('away');
+    $('.vine-1').removeClass('playing').removeClass('done').addClass('away');
     $('.vine-2').removeClass('playing').addClass('away');
     setTimeout(this.moveVine.bind(this, 1), 50);
   },

@@ -7,9 +7,9 @@
   overflow: hidden;
 
   .vine-container{
-    height: 550px;
-    padding: 0;
-    position: static;
+    // height: 550px;
+    // padding: 0;
+    // position: static;
   }
 
   h1.vine-author{
@@ -20,7 +20,7 @@
   // ********Vine Animation************
   .vine{
     background: palegoldenrod;
-    position: absolute;
+    position: relative;
     margin: auto;
     height: 72vh;
     width: 68vh;
@@ -39,11 +39,11 @@
   }
 
   .vine.done{
-    position: static;
+    display: none;
   }
 
   .vine-1.away{
-    top: -500%;
+    top: -1000px;
   }
 
   .vine-1{
@@ -60,10 +60,9 @@
   }
 
   .vine.playing{
-    top: 35px;
-    left: 50%;
-    margin-left: -322px;
-    position: absolute;
+    top: 0;
+    // left: 50%;
+    // position: absolute;
   }
 
   .vine.voting{
@@ -72,7 +71,7 @@
 
 
   .vine-2.away{
-    top: 500%;
-    position: fixed;
+    top: 1000px;
+    // position: fixed;
   }
 }
