@@ -6,7 +6,8 @@ Vensei.Routers.Router = Backbone.Router.extend({
 
   routes:{
     '' : "landingPage",
-    'browse-battles' : 'browseBattles'
+    'browse-battles' : 'browseBattles',
+    'new-poll' : 'newPoll'
   },
 
   landingPage: function(){
@@ -17,7 +18,7 @@ Vensei.Routers.Router = Backbone.Router.extend({
   },
 
   browseBattles: function(){
-    if(!this.vines){
+    if(!this.battles){
       this.battles = new Vensei.Collections.Battles();
       this.battles.fetch();
     }
@@ -28,6 +29,10 @@ Vensei.Routers.Router = Backbone.Router.extend({
     });
 
     this._swapView(view);
+  },
+
+  newPoll: function(){
+
   },
 
   _swapView: function(view){
