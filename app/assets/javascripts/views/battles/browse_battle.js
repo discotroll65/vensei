@@ -11,7 +11,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   },
 
   setupBattle: function(){
-    this.collection.reset(this.collection.shuffle(), {silent:true});
+    // this.collection.reset(this.collection.shuffle(), {silent:true});
     this.battles = this.battles || this.collection;
 
     this.battle = this.battles.shift();

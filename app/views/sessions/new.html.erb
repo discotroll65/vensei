@@ -11,11 +11,12 @@
     <%= button_to "Register", new_user_url, method: :get %>
 
 
-    <form class="guest-login" action="<%= session_url %>" method="post">
+    <form class="guest-login" action="<%= users_url %>" method="post">
       <%= csrf_tag %>
 
         <input type="hidden" class="form-control"
-          type="text" name="user[username]" value="guest">
+          type="text" name="user[username]"
+          value="guest_<%= Faker::Hacker.noun + Faker::App.name + Faker::Hacker.verb + rand(1..999).to_s %>">
         <input type="hidden"
           class="form-control" type="password" name="user[password]"
           value="password"

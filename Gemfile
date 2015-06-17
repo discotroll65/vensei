@@ -15,7 +15,7 @@ gem 'newrelic_rpm'
 gem 'bcrypt', '~> 3.1.7'
 gem 'puma'
 gem 'twitter-vine', github: 'discotroll65/twitter-vine'
-
+gem 'faker'
 
 group :development do
   gem 'pry-rails'

@@ -1,5 +1,5 @@
 json.array! @battles do |battle|
-  next if battle.seen_by?(current_user)
+  next if battle.seen_by?(current_user && current_user.username != 'guest')
   json.extract! battle, :challenger_vine_id, :acceptor_vine_id, :proto_poll_id
 
   json.vines battle.vines do |vine|

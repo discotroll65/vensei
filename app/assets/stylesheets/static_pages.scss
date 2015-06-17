@@ -35,35 +35,35 @@
   width: 90%;
   height: 98%;
   border-radius: 3px;
-  font-size: 50px;
+  font-size: 5vh;
   text-align: center;
   .main-form{
-    margin-bottom: 45px
+    margin-bottom: 4vh;
   }
   input{
     height: 40%;
     width: 90%;
   }
   .vensei{
-    font-size: 200px;
+    font-size: 20vh;
     color: forestgreen;
   }
 
   .form-control{
     height: 50px;
     width: 100%;
-    font-size: 35px;
+    font-size: 5vh;
   }
 
   input.guest-signin{
-    position: absolute;
+    // position: absolute;
     top: 197px;
     left: 50%;
     height: 50px;
     width: 174px;
-    margin-left: -87px;
+    // margin-left: -87px;
     font-size: 20px;
-    display: none;
+    // display: none;
   }
 
   h1{
@@ -73,7 +73,7 @@
     width: 30%;
   }
   .btn{
-    font-size: 50px;
+    font-size: 5vh;
     margin: 4px;
   }
 }
