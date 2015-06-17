@@ -55,5 +55,17 @@ class Battle < ActiveRecord::Base
     self.proto_poll_voters.include?(user)
   end
 
+  def self.find_or_create_by_vine_ids(vine_ids_hash)
+    battle = Battle.find_by(
+      challenger_vine_id: vine_ids_hash[:challenger_vine_id],
+      acceptor_vine_id: vine_ids_hash[:acceptor_vine_id]
+    )
+
+    unless battle
+      battle = Battle.create(vine_ids_hash)
+    end
+
+    battle
+  end
 
 end

@@ -14,7 +14,15 @@ class Api::BattlesController < ApplicationController
   end
 
   def create
-    @battle = Battle.new(vine_params)
+    vine1 = Vine.find_or_create_by_url(vine_params[:vine1_url])
+    vine2 = Vine.find_or_create_by_url(vine_params[:vine2_url])
+
+
+    vine_ids = [vine1.id, vine2.id]
+
+    @battle = Battle.find_or_create_by_vine_ids(
+      { challenger_vine_id: vine_ids.min, acceptor_vine_id: vine_ids.max }
+    )
 
     if @battle.save
       render json: @battle
