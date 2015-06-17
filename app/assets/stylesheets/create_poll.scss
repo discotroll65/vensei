@@ -1,0 +1,28 @@
+.new-poll-background-modal{
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: fixed;
+  background: rgba(0,0, 0, .6);
+}
+
+.new-poll-form-container{
+  background: aliceblue;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 60%;
+  height: 60%;
+  position: fixed;
+  border-radius: 3px;
+  h1{
+    font-size: 3vw;
+  }
+  h2{
+    font-size: 2vw;
+  }
+
+}

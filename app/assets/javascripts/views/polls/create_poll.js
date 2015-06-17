@@ -6,4 +6,5 @@ Vensei.Views.CreatePollView = Backbone.View.extend({
     this.$el.html(content);
     return this;
   }
+
 });
