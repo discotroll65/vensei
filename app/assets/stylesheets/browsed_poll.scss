@@ -25,16 +25,13 @@
     margin: 0;
     text-align: center;
   }
-  .replay {
+  span.btn {
     // background: rgba(0, 250, 0, .3);
     width: 150px;
     height: 100px;
     display: block;
     margin: auto;
-    position: absolute;
     z-index: 42;
-    top: 5px;
-    right: 10px;
 
     h1{
       position: absolute;
@@ -43,14 +40,24 @@
       padding: 0;
     }
   }
-  .replay.no-guess{
+  .skip{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+  .replay{
+    position: absolute;
+    top: 5px;
+    left: 10px;
+  }
+  .no-guess{
     background: rgba(0, 0, 250, .3);
 
   }
-  .replay.winner{
+  .winner{
     background: rgba(0, 250, 0, .3);
   }
-  .replay.loser{
+  .loser{
     background: rgba(250, 0, 0, .3);
   }
 }

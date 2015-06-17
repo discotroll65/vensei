@@ -196,7 +196,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       message = "Most folks also picked "+ author +"'s vine! + 3 points";
       $('.poll-content').removeClass("no-guess").addClass("winner");
       $('button.vote').removeClass("btn-primary").addClass("btn-success");
-      $('.replay').removeClass("no-guess").addClass("winner");
+      $('.no-guess').removeClass("no-guess").addClass("winner");
       this.chartRgb = "0, 250, 0"
 
       this.user.set("score", this.user.get("score") + 3);
@@ -205,7 +205,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       message = "Most think"+ author +"'s vine not as funny. - 5 points";
       $('.poll-content').removeClass("no-guess").addClass("loser");
       $('button.vote').removeClass("btn-primary").addClass("btn-danger");
-      $('.replay').removeClass("no-guess").addClass("loser");
+      $('.no-guess').removeClass("no-guess").addClass("loser");
       this.chartRgb = "250, 0, 0";
 
       this.user.set("score", this.user.get("score") - 5);
