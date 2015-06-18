@@ -12,7 +12,7 @@ class Api::PollsController < ApplicationController
   end
 
   def demo
-    @poll = Poll.find(params[:id])
+    @poll = Poll.find_by(name: "demo_poll")
     render json: @poll
   end
 

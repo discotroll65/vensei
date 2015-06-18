@@ -34,3 +34,11 @@ while vine_array.length >= 2
     acceptor_vine_id: sorted_vines[1].id
   )
 end
+
+#make a poll
+demo_battle = Battle.create(challenger_vine_id: 1, acceptor_vine_id: 75 )
+demo_battle.polls.create(
+  user_id: 2,
+  battle_id: Battle.last.id,
+  name: "demo_poll"
+)
