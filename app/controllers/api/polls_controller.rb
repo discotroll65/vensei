@@ -11,6 +11,11 @@ class Api::PollsController < ApplicationController
     ))
   end
 
+  def demo
+    @poll = Poll.find(params[:id])
+    render json: @poll
+  end
+
 
   def create
     vine_ids = fetch_vines_return_ids

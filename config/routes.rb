@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :vines, only:[:create, :index, :show]
     resources :battles, only: [:index]
     resources :polls, only: [:index, :show, :create]
+    get '/polls/demo/:id' => 'polls#demo'
     resources :poll_votes, only: [:create]
     resources :users, only: [:show, :update]
   end
