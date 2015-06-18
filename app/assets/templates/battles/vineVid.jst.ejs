@@ -11,10 +11,13 @@
       </a>
     </h1>
 
-    <video
-      controls
-      class="vine-vid-<%= number %> vine-vid">
-    </video>
+    <div class="video-container" style="
+    background-image: url(<%= vine.escape('thumbnail_url') %>); ">
+      <video
+        controls
+        class="vine-vid-<%= number %> vine-vid">
+      </video>
+    </div>
 
     <p class="vine-text">
       <a

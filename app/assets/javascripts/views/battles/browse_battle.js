@@ -50,13 +50,10 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   },
 
   events: {
-    "transitionend .vine.playing" : "playVine",
-    "click .replay" : "replayCurrentVines",
-    "click .vote" : "voteFromClick",
-    "click .skip" : "skipChoosing"
+    "transitionend .vine.playing" : "grabMovedVine"
   },
 
-  playVine: function (event){
+  grabMovedVine: function (event){
     var number;
     var vine;
     var that = this;
@@ -67,25 +64,33 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     } else{
       vine = this.vine1;
     }
-
-
     this._currentVid = $vid[0];
+    this.playVine(vine);
+  },
+
+  playVine: function(vine){
+    this.ensureVidLoaded(vine);
+    this._currentVid.play();
+    $(this._currentVid).one(
+      'ended', this.handleVineEnd.bind(this._currentVid, this)
+    );
+  },
+
+  ensureVidLoaded: function(vine){
     this.addSourceToVideo(this._currentVid, vine.get('src_url'), "video/mp4");
-    $vid.attr("poster", vine.get('thumbnail.url'));
+    $(this._currentVid).attr("poster", vine.get('thumbnail_url'));
     this._currentVid.addEventListener(
       "progress", this.progressHandler.bind(this), false
     );
-
-    this._currentVid.play();
-    var handleVineFinish = this.handleVineEnd.bind(this._currentVid, this);
-
-    $(this._currentVid).one('ended', handleVineFinish);
   },
 
   handleVineEnd: function(that){
-    // this here is the video, that is the view
+    // this here is this._currentVid, that is the view
     var $target = $(this);
+
     this.removeEventListener('ended', that.handleVineEnd.bind(this, that));
+
+
     if ($(this).attr('class').split(" ").indexOf("vine-vid-1") === -1){
       $('.poll-content').removeClass('away');
       $('.poll-content').addClass('polling');

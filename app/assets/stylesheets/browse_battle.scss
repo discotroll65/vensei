@@ -17,6 +17,13 @@
     padding:0;
   }
 
+  .video-container{
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 68vh;
+    width: 68vh;
+  }
+
   // ********Vine Animation************
   .vine{
     background: palegoldenrod;

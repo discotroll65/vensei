@@ -3,6 +3,12 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
 
   className: "browsed-poll",
 
+  events: {
+    "click .replay" : "replayCurrentVines",
+    "click .vote" : "voteFromClick",
+    "click .skip" : "skipChoosing"
+  },
+
   initialize: function(options){
     this.vine1 = options.vine1;
     this.vine2 = options.vine2;
