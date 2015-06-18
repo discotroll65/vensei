@@ -1,4 +1,8 @@
 Vensei.Views.SavedPoll = Backbone.View.extend({
+  initialize: function(){
+    this.listenTo(this.model, 'sync', this.render);
+  },
+
   template: JST['polls/saved_poll'],
 
   render: function(){

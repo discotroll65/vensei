@@ -21,12 +21,28 @@ Vensei.Routers.Router = Backbone.Router.extend({
   },
 
   showPoll: function(id){
+    var that = this;
     var poll = new Vensei.Models.Poll({id: id});
-    poll.fetch();
-    var view = new Vensei.Views.SavedPoll({
-      model: poll
+    poll.fetch({
+      error: function(poll, response){
+        $('.errors').empty();
+        var errors = $.parseJSON(response.responseText);
+
+        errors.forEach(function(error){
+          $('.errors').append( error + '<br>');
+        });
+
+        setTimeout(function(){
+          $('.errors').empty();
+        }, 3500);
+      },
+      success: function(){
+        var view = new Vensei.Views.SavedPoll({
+          model: poll
+        });
+        that._swapView(view);
+      }
     });
-    this._swapView(view);
   },
 
   myPolls: function(options){
@@ -37,7 +53,7 @@ Vensei.Routers.Router = Backbone.Router.extend({
   landingPage: function(){
     this.battles = new Vensei.Collections.Battles();
     this.battles.fetch();
-    
+
     var poll = new Vensei.Models.Poll({id: 46});
     poll.fetch();
 

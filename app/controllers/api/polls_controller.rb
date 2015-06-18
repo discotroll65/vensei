@@ -5,8 +5,10 @@ class Api::PollsController < ApplicationController
   end
 
   def show
-    @poll = Poll.find(params[:id])
-    render json: @poll
+    @poll = current_user.polls.where(id: params[:id])[0]
+    @poll ? (render json: @poll) : (render(
+      json: ["Poll does not belong to you!"], status: :unprocessable_entity
+    ))
   end
 
 
