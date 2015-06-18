@@ -28,14 +28,34 @@ class Battle < ActiveRecord::Base
     foreign_key: :acceptor_vine_id
   )
 
-  validates :challenger_vine_id, :acceptor_vine_id, presence: true
+  validates(
+    :challenger_vine_id,
+    presence: {
+      message: "Oops! Looks like the first vine_url is wonky. Try another!"
+    }
+  )
+
+  validates(
+    :acceptor_vine_id,
+    presence: {
+      message: "Oops! Looks like the second vine_url is wonky. Try another!"
+    }
+  )
+
   validates :proto_poll, uniqueness: true
   validates_uniqueness_of :challenger_vine_id, scope: :acceptor_vine_id
+  validate :different_vines
 
   after_create :ensure_proto_poll
 
   def vines
     [self.challenger_vine, self.acceptor_vine]
+  end
+
+  def different_vines
+    if self.challenger_vine_id == self.acceptor_vine_id
+      errors.add(:Need, "two different vines to make a poll!")
+    end
   end
 
   def ensure_proto_poll

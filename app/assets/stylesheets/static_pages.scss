@@ -15,11 +15,15 @@
 .errors{
   z-index: 50;
   position: absolute;
-  background-color: coral;
-  width: 150px;
-  top: 70%;
-  left: 7%;
-  font-size: 20px;
+  background-color: rgba(255, 127, 80, 0.9);
+  left: 0;
+  right: 0;
+  color: white;
+  width: 80%;
+  margin: auto;
+  top: 5%;
+  font-size: 2vw;
+  text-align: center;
   border-radius: 3px;
   overflow-wrap: break-word;
 }
