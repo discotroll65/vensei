@@ -7,7 +7,6 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     this.user = options.user;
     this.collection.length && this.setupBattle();
     this.listenTo(this.collection, 'sync', this.setupBattle);
-    this.chartRgb = "0, 250, 0";
   },
 
   setupBattle: function(){
@@ -34,8 +33,6 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     });
 
     this.$el.html(content);
-
-    this.resetBrowsedPollView();
 
     this.attachSubviews();
     if(this.collection.length > 0){
@@ -65,7 +62,9 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       vine = this.vine1;
     }
     this._currentVid = $vid[0];
-    this.playVine(vine);
+    if(event.originalEvent.propertyName === "top"){
+      this.playVine(vine);
+    }
   },
 
   playVine: function(vine){
@@ -93,11 +92,6 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
 
     if ($(this).attr('class').split(" ").indexOf("vine-vid-1") === -1){
       that.addBrowsedPollView();
-      $('.browsed-poll-background').removeClass('away');
-      $('.browsed-poll-background').addClass('polling');
-      console.log("sensing poll key press");
-      $('body').one('keydown', that.checkKey.bind(that));
-
     } else {
       $('.vine-1').addClass('done');
       that.moveVine(2);
@@ -106,6 +100,8 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
 
   addBrowsedPollView: function(){
     this.browsedPollView = new Vensei.Views.BrowsedPoll({
+      parentView: this,
+      battle: this.battle,
       vine1: this.vine1,
       vine2: this.vine2
     });
@@ -122,108 +118,9 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     this.addBrowsedPollView();
   },
 
-
-  checkKey: function(event){
-    // left arrow keycode = 37
-    // right arrow keycode = 39
-    // up = 38
-    // down = 40
-    if (event.keyCode === 38 || event.keyCode === 40){
-      this.vote(event.keyCode);
-      $('body').off('keydown');
-      setTimeout(this.nextTwoVines.bind(this), 2000);
-    } else if (event.keyCode === 32){
-      this.skipChoosing();
-    }
-    else {
-      $('body').one('keydown', this.checkKey.bind(this));
-    }
-  },
-
-  skipChoosing: function(){
-    $('body').off('keydown');
-    this.nextTwoVines();
-  },
-
-  vote: function(keycode){
-    console.log("voting");
-    (keycode === 38) ? this.voteUp() : this.voteDown();
-  },
-
-  voteDown: function(){
-    this.renderPollChart(this.vine2);
-
-    setTimeout(
-      function(){
-        $('.voting-result-text').empty();
-      }, 2000
-    );
-    console.log("voted right");
-  },
-
-  voteUp: function(){
-    this.renderPollChart(this.vine1);
-
-
-    setTimeout(
-      function(){
-        $('.voting-result-text').empty();
-      }, 2000
-    );
-    console.log("voted left");
-  },
-
-  voteFromClick: function(event){
-    event.preventDefault();
-    $('body').off('keydown');
-    var $target = $(event.currentTarget);
-    if ($target.attr('class').split(" ").indexOf("vote-1") === -1){
-      this.voteDown();
-    } else{
-      this.voteUp();
-    }
-    setTimeout(this.nextTwoVines.bind(this), 2000);
-  },
-
   nextTwoVines: function(){
     this.removeBrowsedPollView();
     this.setupBattle();
-  },
-
-  renderPollChart: function(vine_vote){
-    var pollChartView = this.browsedPollView.subviews(
-      '.poll-chart-container')._wrapped[0];
-    options = this.handleVineVote(vine_vote);
-    pollChartView.drawChart(
-      pollChartView.canvas, options.data, options.chartColor
-    );
-  },
-
-  handleVineVote: function(vine_vote){
-    var vine1Votes, vine2Votes, votes_choice, winner;
-    var vote  = new Vensei.Models.PollVote({
-      user_id: window.CURRENT_USER_ID,
-      vine_vote_id: vine_vote.id,
-      poll_id: this.battle.get('proto_poll_id')
-    });
-    vote.save();
-
-    var battleVines = this.battle.vines();
-    vine1Votes = this.vine1.get('total_votes');
-    vine2Votes = this.vine2.get('total_votes');
-
-    if(vine_vote === this.vine1){
-      vine1Votes++ ;
-      votes_choice = vine1Votes;
-    } else{
-      vine2Votes++ ;
-      votes_choice = vine2Votes;
-    }
-
-    winner = Math.max(vine1Votes, vine2Votes);
-    this.handleScore(votes_choice, winner, vine_vote);
-
-    return {data: [vine2Votes, vine1Votes], chartColor: this.chartRgb};
   },
 
   handleScore: function(votes_choice, winner, vine_vote){
@@ -249,14 +146,6 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       this.user.save();
     }
     $('.key-vote-prompt').html('<h2>' + message + '</h2>');
-  },
-
-  replayCurrentVines: function(){
-    $('.browsed-poll-background').removeClass('polling');
-    $('.browsed-poll-background').addClass('away');
-    $('.vine-1').removeClass('playing').removeClass('done').addClass('away');
-    $('.vine-2').removeClass('playing').addClass('away');
-    setTimeout(this.moveVine.bind(this, 1), 50);
   },
 
   addSourceToVideo: function(element, src, type) {

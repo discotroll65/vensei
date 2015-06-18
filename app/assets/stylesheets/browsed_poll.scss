@@ -4,6 +4,7 @@
   right: 0;
   left: 0;
   position: fixed;
+  z-index: 60;
 }
 
 .browsed-poll-background.no-guess{
@@ -81,13 +82,13 @@
   margin: auto;
 }
 
-.browsed-poll-background.polling{
-  z-index: 60;
-}
-
-.browsed-poll-background.away{
-  z-index: -5;
-}
+// .browsed-poll-background.polling{
+//   z-index: 60;
+// }
+//
+// .browsed-poll-background.away{
+//   z-index: -5;
+// }
 
 hr.vid-divider{
   border-top: 3px solid #000;
