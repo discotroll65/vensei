@@ -8,6 +8,9 @@
 }
 
 .new-poll-form-container{
+  form.new-poll-form{
+    height: 50%;
+  }
   background: aliceblue;
   margin: auto;
   top: 0;
@@ -23,6 +26,11 @@
   }
   h2{
     font-size: 2vw;
+  }
+
+  input{
+    height: 15%;
+    width: 90%;
   }
 
 }
