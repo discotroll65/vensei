@@ -1,4 +1,4 @@
-.poll-content{
+.browsed-poll-background{
   top: 0;
   bottom: 0;
   right: 0;
@@ -6,13 +6,13 @@
   position: fixed;
 }
 
-.poll-content.no-guess{
+.browsed-poll-background.no-guess{
   background: rgba(0,0, 250, .3);
 }
-.poll-content.winner{
+.browsed-poll-background.winner{
   background: rgba(0,250, 0, .3);
 }
-.poll-content.loser{
+.browsed-poll-background.loser{
   background: rgba(250, 0, 0, .3);
 
 }
@@ -26,7 +26,7 @@
   }
 }
 
-.browsed-poll{
+.browsed-poll-content{
   background: aliceblue;
   margin: auto;
   top: 40px;
@@ -81,11 +81,11 @@
   margin: auto;
 }
 
-.poll-content.polling{
+.browsed-poll-background.polling{
   z-index: 60;
 }
 
-.poll-content.away{
+.browsed-poll-background.away{
   z-index: -5;
 }
 

@@ -1,7 +1,7 @@
 Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
   template: JST['polls/browsed_poll'],
 
-  className: "browsed-poll",
+  className: "browsed-poll-background away no-guess",
 
   events: {
     "click .replay" : "replayCurrentVines",

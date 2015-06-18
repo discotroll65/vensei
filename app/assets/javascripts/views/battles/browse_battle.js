@@ -78,7 +78,6 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
 
   ensureVidLoaded: function(vine){
     this.addSourceToVideo(this._currentVid, vine.get('src_url'), "video/mp4");
-    $(this._currentVid).attr("poster", vine.get('thumbnail_url'));
     this._currentVid.addEventListener(
       "progress", this.progressHandler.bind(this), false
     );
@@ -89,11 +88,13 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     var $target = $(this);
 
     this.removeEventListener('ended', that.handleVineEnd.bind(this, that));
+    this.removeEventListener('progress', that.progressHandler.bind(that));
 
 
     if ($(this).attr('class').split(" ").indexOf("vine-vid-1") === -1){
-      $('.poll-content').removeClass('away');
-      $('.poll-content').addClass('polling');
+      that.addBrowsedPollView();
+      $('.browsed-poll-background').removeClass('away');
+      $('.browsed-poll-background').addClass('polling');
       console.log("sensing poll key press");
       $('body').one('keydown', that.checkKey.bind(that));
 
@@ -102,6 +103,25 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       that.moveVine(2);
     }
   },
+
+  addBrowsedPollView: function(){
+    this.browsedPollView = new Vensei.Views.BrowsedPoll({
+      vine1: this.vine1,
+      vine2: this.vine2
+    });
+
+    this.addSubview('.browsed-poll', this.browsedPollView);
+  },
+
+  removeBrowsedPollView: function(){
+    this.removeSubview('.browsed-poll', this.browsedPollView);
+  },
+
+  resetBrowsedPollView: function(){
+    this.browsedPollView && this.removeBrowsedPollView();
+    this.addBrowsedPollView();
+  },
+
 
   checkKey: function(event){
     // left arrow keycode = 37
@@ -211,7 +231,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     author = vine_vote.escape('vine_author');
     if(votes_choice === winner){
       message = "Most folks also picked "+ author +"'s vine! + 3 points";
-      $('.poll-content').removeClass("no-guess").addClass("winner");
+      $('.browsed-poll-background').removeClass("no-guess").addClass("winner");
       $('button.vote').removeClass("btn-primary").addClass("btn-success");
       $('.no-guess').removeClass("no-guess").addClass("winner");
       this.chartRgb = "0, 250, 0";
@@ -220,7 +240,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       this.user.save();
     }else {
       message = "Most think"+ author +"'s vine not as funny. - 5 points";
-      $('.poll-content').removeClass("no-guess").addClass("loser");
+      $('.browsed-poll-background').removeClass("no-guess").addClass("loser");
       $('button.vote').removeClass("btn-primary").addClass("btn-danger");
       $('.no-guess').removeClass("no-guess").addClass("loser");
       this.chartRgb = "250, 0, 0";
@@ -231,27 +251,9 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     $('.key-vote-prompt').html('<h2>' + message + '</h2>');
   },
 
-  addBrowsedPollView: function(){
-    this.browsedPollView = new Vensei.Views.BrowsedPoll({
-      vine1: this.vine1,
-      vine2: this.vine2
-    });
-
-    this.addSubview('.poll-content', this.browsedPollView);
-  },
-
-  removeBrowsedPollView: function(){
-    this.removeSubview('.poll-content', this.browsedPollView);
-  },
-
-  resetBrowsedPollView: function(){
-    this.browsedPollView && this.removeBrowsedPollView();
-    this.addBrowsedPollView();
-  },
-
   replayCurrentVines: function(){
-    $('.poll-content').removeClass('polling');
-    $('.poll-content').addClass('away');
+    $('.browsed-poll-background').removeClass('polling');
+    $('.browsed-poll-background').addClass('away');
     $('.vine-1').removeClass('playing').removeClass('done').addClass('away');
     $('.vine-2').removeClass('playing').addClass('away');
     setTimeout(this.moveVine.bind(this, 1), 50);

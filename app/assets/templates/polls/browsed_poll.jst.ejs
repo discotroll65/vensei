@@ -1,36 +1,39 @@
-<div class="row">
-  <span class="replay btn no-guess col-xs-1.5">
-    <h3>Replay</h3>
-  </span>
+<div class="browsed-poll-content">
+  <div class="row">
+    <span class="replay btn no-guess col-xs-1.5">
+      <h3>Replay</h3>
+    </span>
 
-  <span class="prompt col-xs-9">
-    <h1>
-      Which Vine is Funnier?
-    </h1>
-    <div class="key-vote-prompt">
-      <h2>
-        Vote by button or pressing up / down arrow
-      </h2>
-      <h2>
-        Push spacebar to skip
-      </h2>
-    </div>
-  </span>
+    <span class="prompt col-xs-9">
+      <h1>
+        Which Vine is Funnier?
+      </h1>
+      <div class="key-vote-prompt">
+        <h2>
+          Vote by button or pressing up / down arrow
+        </h2>
+        <h2>
+          Push spacebar to skip
+        </h2>
+      </div>
+    </span>
 
-  <span class="skip btn no-guess col-xs-1.5">
-    <h3>Skip</h3>
-  </span>
+    <span class="skip btn no-guess col-xs-1.5">
+      <h3>Skip</h3>
+    </span>
 
-</div>
-
-<div class="row poll-vines">
-  <div class="poll-vine-vids col-xs-4">
-    <%= JST['polls/pollVineVid']({vine: vine1, number: 1}) %>
-
-    <%= JST['polls/pollVineVid']({vine: vine2, number: 2}) %>
   </div>
 
-  <div class="poll-chart-container col-xs-8">
+  <div class="row poll-vines">
+    <div class="poll-vine-vids col-xs-4">
+      <%= JST['polls/pollVineVid']({vine: vine1, number: 1}) %>
+
+      <%= JST['polls/pollVineVid']({vine: vine2, number: 2}) %>
+    </div>
+
+    <div class="poll-chart-container col-xs-8">
+
+    </div>
 
   </div>
 
