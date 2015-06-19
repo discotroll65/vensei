@@ -19,15 +19,7 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
     this.chartRgb = "0, 250, 0";
 
     this.addPollChart(this.challengerVine, this.acceptorVine);
-
-    var chartOptions = {
-      data: [this.acceptorVineVotes, this.challengerVineVotes],
-      chartColor: this.chartRgb
-    };
-
-    this.pollChartView.drawChart(
-      this.pollChartView.canvas, options.data, options.chartColor
-    );
+    setTimeout(this.renderPollChart.bind(this), 0);
     this.listenTo(this.poll, 'sync', this.render);
   },
 
@@ -43,7 +35,7 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
 
   voteDown: function(){
     $('.vote').prop('disabled', 'true');
-    this.renderPollChart(this.acceptorVine);
+    this.handleAndRenderPollChart(this.acceptorVine);
 
     setTimeout(
       function(){
@@ -55,7 +47,7 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
 
   voteUp: function(){
     $('.vote').prop('disabled', 'true');
-    this.renderPollChart(this.challengerVine);
+    this.handleAndRenderPollChart(this.challengerVine);
 
     setTimeout(
       function(){
@@ -77,8 +69,17 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
     }
   },
 
-  renderPollChart: function(vine_vote){
-    options = this.handleVineVote(vine_vote);
+  handleAndRenderPollChart: function(vine_vote){
+    this.handleVineVote(vine_vote);
+    this.renderPollChart();
+  },
+
+  renderPollChart: function(){
+    options = {
+      data: [this.acceptorVineVotes, this.challengerVineVotes],
+      chartColor: this.chartRgb
+    };
+
     this.pollChartView.drawChart(
       this.pollChartView.canvas, options.data, options.chartColor
     );
@@ -87,10 +88,6 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
   handleVineVote: function(vine_vote){
     this.createPollVote(vine_vote);
     this.interpretVineVote(vine_vote);
-    return {
-      data: [this.acceptorVineVotes, this.challengerVineVotes],
-      chartColor: this.chartRgb
-    };
   },
 
   interpretVineVote: function(vine_vote){
@@ -131,6 +128,7 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
       this.$('.saved-poll-content').addClass('demo');
 
     }
+    debugger
     return this;
   }
 
