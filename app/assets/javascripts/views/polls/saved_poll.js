@@ -128,7 +128,6 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
       this.$('.saved-poll-content').addClass('demo');
 
     }
-    debugger
     return this;
   }
 
