@@ -35,7 +35,9 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
     if (event.keyCode === 38 || event.keyCode === 40){
       this.vote(event.keyCode);
       $('body').off('keydown');
-      setTimeout(this.parentView.nextTwoVines.bind(this.parentView), this.resultsDelay);
+      setTimeout(
+        this.parentView.nextTwoVines.bind(this.parentView), this.resultsDelay
+      );
     } else if (event.keyCode === 32){
       this.skipChoosing();
     }
@@ -86,7 +88,9 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
     } else{
       this.voteUp();
     }
-    setTimeout(this.parentView.nextTwoVines.bind(this.parentView), this.resultsDelay);
+    setTimeout(
+      this.parentView.nextTwoVines.bind(this.parentView), this.resultsDelay
+    );
   },
 
   renderPollChart: function(vine_vote){

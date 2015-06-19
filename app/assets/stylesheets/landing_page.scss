@@ -50,12 +50,32 @@
   // actual is a div with 888 x 493
 }
 
+.loading {
+  background: black;
+  background-image: image-url('spin_attack.gif');
+  background-repeat: no-repeat;
+  background-position-x: 50%;
+  background-position-y: 50%;
+  background-size: contain;
+}
+
+.loading:after{
+  text-align: center;
+  color: white;
+  content: "loading...";
+  display: block;
+  font-size: 4vh;
+}
+
+.loading-text:after {
+  color: white;
+  text-align: bottom, center;
+}
+
 .landing-saved-poll {
-  background: green;
   height: 394px;
-  width: 629px;
+  width: 630px;
   margin: auto;
-  background: none;
   position: relative;
   top: 35px;
 }
