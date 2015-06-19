@@ -124,6 +124,7 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
       this.$('canvas').addClass('demo');
       this.$('.saved-poll-chart-container').addClass('demo');
       this.$('.saved-poll-vine-vid').addClass('demo');
+      this.$('.live-saved-poll-place-holder').addClass('demo');
     }
     return this;
   }

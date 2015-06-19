@@ -1,11 +1,3 @@
-.live-saved-poll-place-holder{
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  position: absolute;
-  z-index: 60;
-}
 
 .prompt{
   display: block;
@@ -56,4 +48,20 @@ hr.vid-divider{
 .saved-poll-chart-container.demo{
   height: 345px;
   background: palegoldenrod;
+}
+
+.live-saved-poll-place-holder.demo{
+  top: 77px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: absolute;
+  z-index: 60;
+  height: 394px;
+  width: 101%;
+  background: orange;
+}
+
+.live-saved-poll-place-holder{
+  height: 90%;
 }

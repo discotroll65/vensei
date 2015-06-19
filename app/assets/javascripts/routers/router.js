@@ -39,7 +39,8 @@ Vensei.Routers.Router = Backbone.Router.extend({
 
       success: function(){
         var view = new Vensei.Views.SavedPoll({
-          model: poll
+          model: poll,
+          battle: poll.battle()
         });
         that._swapView(view);
       }

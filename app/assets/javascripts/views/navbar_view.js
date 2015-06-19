@@ -1,6 +1,8 @@
 Vensei.Views.Navbar = Backbone.View.extend({
   template: JST['navbar'],
 
+  className: 'group',
+
   initialize: function(options){
     this.user = options.user;
     this.listenTo(this.user, 'sync', this.render);
