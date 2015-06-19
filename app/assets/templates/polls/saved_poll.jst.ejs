@@ -1,5 +1,35 @@
+<div class="saved-poll-content">
+  <div class="row">
+    <span class="col-xs-1.5">
+    </span>
 
+    <span class="prompt col-xs-9">
+      <h1>
+        Which Vine is Funnier?
+      </h1>
+      <div class="key-vote-prompt">
+        <h2>
+          respond at <strong>vensei.com/stuff</strong>
+        </h2>
+      </div>
+    </span>
 
-<h1>
-  This is poll <%= poll.escape('name') %>
-</h1>
+    <span class="col-xs-1.5">
+    </span>
+
+  </div>
+
+  <div class="row poll-vines">
+    <div class="saved-poll-vine-vids col-xs-4">
+      <%= JST['polls/savedPollVineVid']({vine: vine1, number: 1}) %>
+
+      <%= JST['polls/savedPollVineVid']({vine: vine2, number: 2}) %>
+    </div>
+
+    <div class="saved-poll-chart-container col-xs-8">
+
+    </div>
+
+  </div>
+
+</div>

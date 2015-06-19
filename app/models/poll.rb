@@ -14,6 +14,15 @@ class Poll < ActiveRecord::Base
     source: :voter
   )
 
+  has_many(
+    :vine_votes,
+    through: :poll_votes,
+    source: :vine_vote
+  )
+
+  has_one :challenger_vine, through: :battle
+  has_one :acceptor_vine, through: :battle
+
   validates :name, presence: true, uniqueness: true
   validates :author, :battle, presence: true
 end

@@ -17,6 +17,7 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
     this.vine1Votes = this.vine1.get('total_votes');
     this.vine2Votes = this.vine2.get('total_votes');
     this.chartRgb = "0, 250, 0";
+    this.resultsDelay = 6000;
 
     this.votes_choice = null;
     this.winner = null;
@@ -34,7 +35,7 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
     if (event.keyCode === 38 || event.keyCode === 40){
       this.vote(event.keyCode);
       $('body').off('keydown');
-      setTimeout(this.parentView.nextTwoVines.bind(this.parentView), 2000);
+      setTimeout(this.parentView.nextTwoVines.bind(this.parentView), this.resultsDelay);
     } else if (event.keyCode === 32){
       this.skipChoosing();
     }
@@ -55,22 +56,20 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
 
   voteDown: function(){
     this.renderPollChart(this.vine2);
-
     setTimeout(
       function(){
         $('.voting-result-text').empty();
-      }, 2000
+      }, this.resultsDelay
     );
     console.log("voted right");
   },
 
   voteUp: function(){
     this.renderPollChart(this.vine1);
-
     setTimeout(
       function(){
         $('.voting-result-text').empty();
-      }, 2000
+      }, this.resultsDelay
     );
     console.log("voted left");
   },
@@ -84,7 +83,7 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
     } else{
       this.voteUp();
     }
-    setTimeout(this.parentView.nextTwoVines.bind(this.parentView), 2000);
+    setTimeout(this.parentView.nextTwoVines.bind(this.parentView), this.resultsDelay);
   },
 
   renderPollChart: function(vine_vote){
@@ -99,7 +98,10 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
     this.interpretVineVote(vine_vote);
     this.parentView.handleScore(this.votes_choice, this.winner, vine_vote);
 
-    return {data: [this.vine2Votes, this.vine1Votes], chartColor: this.chartRgb};
+    return {
+      data: [this.vine2Votes, this.vine1Votes],
+      chartColor: this.chartRgb
+    };
   },
 
   interpretVineVote: function(vine_vote){

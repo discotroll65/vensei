@@ -11,6 +11,12 @@ Vensei.Views.Navbar = Backbone.View.extend({
       user: this.user
     });
     this.$el.html(content);
+    $('.score').addClass('highlighted');
+    setTimeout(
+      function(){
+        $('.score').removeClass('highlighted');
+      }, 1000
+    );
     return this;
   },
 

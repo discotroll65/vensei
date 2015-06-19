@@ -39,6 +39,16 @@ h1 {
   padding-top: 77px;
 }
 
+.score{
+  font-size: 14px;
+  transition: font-size 500ms ease;
+}
+
+.score.highlighted{
+  font-size: 40px;
+  color: rgb(255, 255, 255);
+}
+
 nav.navbar {
   margin: 0;
   height: 77px;

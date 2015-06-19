@@ -134,7 +134,6 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       this.chartRgb = "0, 250, 0";
 
       this.user.set("score", this.user.get("score") + 3);
-      this.user.save();
     }else {
       message = "Most think"+ author +"'s vine not as funny. - 5 points";
       $('.browsed-poll-background').removeClass("no-guess").addClass("loser");
@@ -143,8 +142,8 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       this.chartRgb = "250, 0, 0";
 
       this.user.set("score", this.user.get("score") - 5);
-      this.user.save();
     }
+    this.user.save();
     $('.key-vote-prompt').html('<h2>' + message + '</h2>');
   },
 

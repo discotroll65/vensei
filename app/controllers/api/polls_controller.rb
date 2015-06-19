@@ -8,6 +8,8 @@ class Api::PollsController < ApplicationController
     @poll = current_user.polls.where(id: params[:id])[0]
     if @poll
       @battle = @poll.battle
+      @cha_vine = @poll.challenger_vine
+      @acc_vine = @poll.acceptor_vine
       render :show
     else
       render(
@@ -19,6 +21,8 @@ class Api::PollsController < ApplicationController
   def demo
     @poll = Poll.find_by(name: "demo_poll")
     @battle = @poll.battle
+    @cha_vine = @poll.challenger_vine
+    @acc_vine = @poll.acceptor_vine
     render :show
   end
 

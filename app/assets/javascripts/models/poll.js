@@ -9,7 +9,6 @@ Vensei.Models.Poll = Backbone.Model.extend({
   parse: function(payload){
     if (payload.battle){
       this.battle().set(this.battle().parse(payload.battle));
-
       delete payload.battle;
     }
 

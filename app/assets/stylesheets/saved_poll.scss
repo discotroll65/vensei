@@ -1,0 +1,59 @@
+.live-saved-poll-place-holder{
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  position: absolute;
+  z-index: 60;
+}
+
+.prompt{
+  display: block;
+
+  h1, h2{
+    margin: 0;
+    text-align: center;
+  }
+}
+
+.saved-poll-content{
+  background: aliceblue;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  h1{
+    font-size: 28px;
+  }
+  h2{
+    font-size: 18px;
+  }
+
+  button{
+    font-size: 2vh;
+    display: block;
+
+  }
+}
+
+.saved-poll-vine-vids{
+  padding: 0;
+}
+
+.key-vote-prompt{
+  width: 75%;
+  margin: auto;
+}
+
+hr.vid-divider{
+  border-top: 3px solid #000;
+}
+
+.saved-poll-chart-container.demo{
+  height: 345px;
+  background: palegoldenrod;
+}
