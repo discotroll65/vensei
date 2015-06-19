@@ -55,6 +55,7 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
   },
 
   voteDown: function(){
+    $('.vote').prop('disabled', 'true');
     this.renderPollChart(this.vine2);
     setTimeout(
       function(){
@@ -65,6 +66,7 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
   },
 
   voteUp: function(){
+    $('.vote').prop('disabled', 'true');
     this.renderPollChart(this.vine1);
     setTimeout(
       function(){
@@ -76,6 +78,7 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
 
   voteFromClick: function(event){
     event.preventDefault();
+    $('.vote').prop('disabled', 'true');
     $('body').off('keydown');
     var $target = $(event.currentTarget);
     if ($target.attr('class').split(" ").indexOf("vote-1") === -1){
