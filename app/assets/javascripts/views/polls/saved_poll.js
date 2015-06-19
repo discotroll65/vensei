@@ -107,7 +107,7 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
     var pollVote  = new Vensei.Models.PollVote({
       user_id: window.CURRENT_USER_ID,
       vine_vote_id: vine_vote.id,
-      poll_id: this.battle.get('proto_poll_id')
+      poll_id: this.poll.id
     });
     pollVote.save();
   },
