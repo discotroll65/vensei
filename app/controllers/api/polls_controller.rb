@@ -19,7 +19,6 @@ class Api::PollsController < ApplicationController
   def demo
     @poll = Poll.find_by(name: "demo_poll")
     @battle = @poll.battle
-    # render json: @poll
     render :show
   end
 
@@ -67,10 +66,8 @@ class Api::PollsController < ApplicationController
     vine_client = Vine.make_vine_client
 
     vine1 = Vine.find_or_create_by_url(poll_params[:vine1_url], vine_client)
-    # vine1_errors = vine_wonky?(vine1, "first")
 
     vine2 = Vine.find_or_create_by_url(poll_params[:vine2_url], vine_client)
-    # vine2_errors = vine_wonky?(vine2, "second")
 
     [vine1.id, vine2.id]
   end

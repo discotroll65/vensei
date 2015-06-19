@@ -16,6 +16,7 @@ Vensei.Views.LandingPage = Backbone.CompositeView.extend({
 
   addSavedPollView: function(poll){
     var savedPollView = new Vensei.Views.SavedPoll({
+      battle: poll.battle(),
       model: poll
     });
 
