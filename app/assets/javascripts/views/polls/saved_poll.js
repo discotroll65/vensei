@@ -33,6 +33,18 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
     );
   },
 
+  voteFromClick: function(event){
+    event.preventDefault();
+    $('.vote').prop('disabled', 'true');
+    $('body').off('keydown');
+    var $target = $(event.currentTarget);
+    if ($target.attr('class').split(" ").indexOf("vote-1") === -1){
+      this.voteDown();
+    } else{
+      this.voteUp();
+    }
+  },
+
   voteDown: function(){
     $('.vote').prop('disabled', 'true');
     this.handleAndRenderPollChart(this.acceptorVine);
@@ -55,18 +67,6 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
       }, 2000
     );
     console.log("voted left");
-  },
-
-  voteFromClick: function(event){
-    event.preventDefault();
-    $('.vote').prop('disabled', 'true');
-    $('body').off('keydown');
-    var $target = $(event.currentTarget);
-    if ($target.attr('class').split(" ").indexOf("vote-1") === -1){
-      this.voteDown();
-    } else{
-      this.voteUp();
-    }
   },
 
   handleAndRenderPollChart: function(vine_vote){
@@ -126,7 +126,9 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
       this.$('.saved-poll-vine-vid').addClass('demo');
       this.$('.live-saved-poll-place-holder').addClass('demo');
       this.$('.saved-poll-content').addClass('demo');
-
+    }
+    if (this.poll.voters().get(CURRENT_USER_ID)){
+      $('.vote').prop('disabled', 'true');
     }
     return this;
   }

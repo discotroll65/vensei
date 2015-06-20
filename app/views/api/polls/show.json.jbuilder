@@ -8,3 +8,6 @@ json.challenger_vine_votes @poll.vine_votes.where(
   id: @cha_vine.id).count
 json.acceptor_vine_votes @poll.vine_votes.where(
   id: @acc_vine.id).count
+json.voters @poll.voters do |voter|
+  json.extract! voter, :id
+end

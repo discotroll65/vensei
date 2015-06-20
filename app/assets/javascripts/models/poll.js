@@ -6,10 +6,20 @@ Vensei.Models.Poll = Backbone.Model.extend({
     return this._battle;
   },
 
+  voters: function(){
+    this._voters = this._voters || new Vensei.Collections.Users();
+    return this._voters;
+  },
+
   parse: function(payload){
     if (payload.battle){
       this.battle().set(this.battle().parse(payload.battle));
       delete payload.battle;
+    }
+
+    if (payload.voters){
+      this.voters().set(payload.voters);
+      delete payload.voters;
     }
 
     return payload;
