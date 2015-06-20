@@ -117,6 +117,7 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
 
   render: function(){
     var content = this.template({
+      poll: this.poll,
       vine1: this.challengerVine,
       vine2: this.acceptorVine
     });

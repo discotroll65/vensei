@@ -5,17 +5,15 @@ class Api::PollsController < ApplicationController
   end
 
   def show
-    @poll = current_user.polls.where(id: params[:id])[0]
-    if @poll
-      @battle = @poll.battle
-      @cha_vine = @poll.challenger_vine
-      @acc_vine = @poll.acceptor_vine
-      render :show
-    else
-      render(
-        json: ["Poll does not belong to you!"], status: :unprocessable_entity
-      )
-    end
+    @poll = Poll.includes(
+      :battle,
+      :challenger_vine,
+      :acceptor_vine
+    ).find(params[:id])
+    @battle = @poll.battle
+    @cha_vine = @poll.challenger_vine
+    @acc_vine = @poll.acceptor_vine
+    render :show
   end
 
   def demo
