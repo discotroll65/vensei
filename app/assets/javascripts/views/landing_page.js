@@ -2,7 +2,9 @@ Vensei.Views.LandingPage = Backbone.CompositeView.extend({
   template: JST["landing_page"],
 
   initialize: function(){
-    this.listenTo(this.model, 'sync', this.addSavedPollView );
+    this.listenTo(
+      this.model, 'fetched', this.addSavedPollView.bind(this, this.model)
+    );
   },
 
   render: function(){

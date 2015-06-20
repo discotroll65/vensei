@@ -57,8 +57,14 @@ Vensei.Routers.Router = Backbone.Router.extend({
     this.battles.fetch();
 
     var poll = new Vensei.Models.Poll();
+
     poll.urlRoot = 'api/polls/demo';
-    poll.fetch();
+    poll.fetch({
+      success: function(){
+        poll.trigger('fetched');
+      }
+    });
+    poll.urlRoot = 'api/polls';
 
     var view = new Vensei.Views.LandingPage({
       model: poll

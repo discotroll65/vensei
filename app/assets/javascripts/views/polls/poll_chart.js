@@ -37,7 +37,7 @@ Vensei.Views.PollChart = Backbone.View.extend({
 
   drawChart: function(canvas, vineVoteArray, rgb){
     var ctx = canvas.getContext("2d");
-    this.VinePoll = new Chart(ctx).HorizontalBar(
+    this.vinePoll = new Chart(ctx).HorizontalBar(
       this.chartData(vineVoteArray, rgb)
     );
   }

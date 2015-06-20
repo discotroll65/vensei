@@ -20,7 +20,11 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
 
     this.addPollChart(this.challengerVine, this.acceptorVine);
     setTimeout(this.renderPollChart.bind(this), 0);
-    this.listenTo(this.poll, 'sync', this.render);
+
+    this.checkGraphUpdated();
+    this.listenTo(this.poll, 'change:challenger_vine_votes', this.updateGraph);
+    this.listenTo(this.poll, 'change:acceptor_vine_votes', this.updateGraph);
+
   },
 
   addPollChart: function(challengerVine, acceptorVine){
@@ -86,6 +90,21 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
       this.pollChartView.canvas, options.data, options.chartColor
     );
   },
+
+  checkGraphUpdated: function(){
+    var that = this;
+    setInterval(function(){
+      that.poll.fetch();
+    }, 1000);
+  },
+
+  updateGraph: function(poll){
+    var livePoll = this.pollChartView.vinePoll;
+    livePoll.datasets[0].bars[1].value = poll.get('challenger_vine_votes');
+    livePoll.datasets[0].bars[0].value = poll.get('acceptor_vine_votes');
+    livePoll.update();
+  },
+
 
   handleVineVote: function(vine_vote){
     this.createPollVote(vine_vote);
