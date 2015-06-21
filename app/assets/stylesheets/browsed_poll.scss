@@ -47,7 +47,6 @@
   span.btn {
     // background: rgba(0, 250, 0, .3);
     width: 11vw;
-    height: 9vh;
     display: block;
     margin: auto;
     padding: 0;
@@ -58,7 +57,10 @@
       font-size: 3vw;
       margin:0;
     }
+  }
 
+  span.btn:hover{
+    background: #337ab7;
   }
 
   .no-guess{
