@@ -27,6 +27,14 @@
   }
 }
 
+.keyboard-btn{
+  width: 5vw;
+}
+
+.keyboard-spacebar{
+  width: 15vw;
+}
+
 .browsed-poll-content{
   background: aliceblue;
   margin: auto;
@@ -43,9 +51,7 @@
   h2{
     font-size: 2vw;
   }
-  // font-size: 3vh;
   span.btn {
-    // background: rgba(0, 250, 0, .3);
     width: 11vw;
     display: block;
     margin: auto;
@@ -80,17 +86,9 @@
 }
 
 .key-vote-prompt{
-  width: 75%;
+  width: 100%;
   margin: auto;
 }
-
-// .browsed-poll-background.polling{
-//   z-index: 60;
-// }
-//
-// .browsed-poll-background.away{
-//   z-index: -5;
-// }
 
 hr.vid-divider{
   border-top: 3px solid #000;
