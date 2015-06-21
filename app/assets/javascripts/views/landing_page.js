@@ -16,15 +16,14 @@ Vensei.Views.LandingPage = Backbone.CompositeView.extend({
 
   className: 'landing-page',
 
-
   addSavedPollView: function(poll){
-    var savedPollView = new Vensei.Views.SavedPoll({
+    this.savedPollView = new Vensei.Views.SavedPoll({
       battle: poll.battle(),
       model: poll,
-      demo: true
+      demo: true,
     });
 
-    this.addSubview('.landing-saved-poll', savedPollView);
-
+    this.interval = this.savedPollView.interval;
+    this.addSubview('.landing-saved-poll', this.savedPollView);
   }
 });

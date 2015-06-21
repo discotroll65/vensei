@@ -21,7 +21,7 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
     this.addPollChart(this.challengerVine, this.acceptorVine);
     setTimeout(this.renderPollChart.bind(this), 0);
 
-    this.checkPollChartUpdated();
+    this.interval = this.checkPollChartUpdated();
     this.listenTo(this.poll, 'change:challenger_vine_votes', this.updatePollChart);
     this.listenTo(this.poll, 'change:acceptor_vine_votes', this.updatePollChart);
 
@@ -93,7 +93,7 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
 
   checkPollChartUpdated: function(){
     var that = this;
-    setInterval(function(){
+    return setInterval(function(){
       that.poll.fetch();
     }, 1000);
   },
