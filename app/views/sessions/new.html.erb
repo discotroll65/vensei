@@ -16,7 +16,7 @@
 
         <input type="hidden" class="form-control"
           type="text" name="user[username]"
-          value="guest_<%= Faker::Hacker.noun + Faker::App.name + Faker::Hacker.verb + rand(1..999).to_s %>">
+          value="guest_<%= Faker::Hacker.noun +  rand(1..999).to_s %>">
         <input type="hidden"
           class="form-control" type="password" name="user[password]"
           value="password"
