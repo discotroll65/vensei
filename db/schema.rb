@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150621023650) do
+ActiveRecord::Schema.define(version: 20150621100602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,12 @@ ActiveRecord::Schema.define(version: 20150621023650) do
   add_index "polls", ["presentation_poll"], name: "index_polls_on_presentation_poll", using: :btree
   add_index "polls", ["user_id"], name: "index_polls_on_user_id", using: :btree
 
+  create_table "tags", force: :cascade do |t|
+    t.string "label", null: false
+  end
+
+  add_index "tags", ["label"], name: "index_tags_on_label", unique: true, using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "password_digest",             null: false
     t.integer  "score",           default: 0
@@ -75,6 +81,14 @@ ActiveRecord::Schema.define(version: 20150621023650) do
   end
 
   add_index "vine_authors", ["vine_username"], name: "index_vine_authors_on_vine_username", unique: true, using: :btree
+
+  create_table "vine_tags", force: :cascade do |t|
+    t.integer "vine_id", null: false
+    t.integer "tag_id",  null: false
+  end
+
+  add_index "vine_tags", ["tag_id"], name: "index_vine_tags_on_tag_id", using: :btree
+  add_index "vine_tags", ["vine_id"], name: "index_vine_tags_on_vine_id", using: :btree
 
   create_table "vines", force: :cascade do |t|
     t.datetime "created_at",     null: false

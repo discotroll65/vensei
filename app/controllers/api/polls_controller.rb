@@ -66,9 +66,7 @@ class Api::PollsController < ApplicationController
 
   def fetch_vines_return_ids
     vine_client = Vine.make_vine_client
-
     vine1 = Vine.find_or_create_by_url(poll_params[:vine1_url], vine_client)
-
     vine2 = Vine.find_or_create_by_url(poll_params[:vine2_url], vine_client)
 
     [vine1.id, vine2.id]
