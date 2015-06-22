@@ -19,13 +19,14 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
     this.vine2Votes = this.vine2.get('total_votes');
     this.chartRgb = "0, 250, 0";
     this.resultsDelay = 6000;
+    this.voted = false;
 
     this.votes_choice = null;
     this.winner = null;
 
     this.addPollChart(this.vine1, this.vine2);
     console.log("sensing poll key press");
-    $('body').one('keydown', this.checkKey.bind(this));
+    $('body').on('keydown', this.checkKey.bind(this));
   },
 
   checkKey: function(event){
@@ -33,10 +34,10 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
     // right arrow keycode = 39
     // up = 38
     // down = 40
-    if (event.keyCode === 38 || event.keyCode === 40){
+    if ((event.keyCode === 38 || event.keyCode === 40) && !this.voted ){
+      this.voted = true;
       this.vote(event.keyCode);
-      $('body').off('keydown');
-      setTimeout(
+      this.waitingForNext = setTimeout(
         this.parentView.nextTwoVines.bind(this.parentView), this.resultsDelay
       );
     } else if (event.keyCode === 32){
@@ -49,20 +50,21 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
 
   voteFromClick: function(event){
     event.preventDefault();
+    this.voted = true;
     $('.vote').prop('disabled', 'true');
-    $('body').off('keydown');
     var $target = $(event.currentTarget);
     if ($target.attr('class').split(" ").indexOf("vote-1") === -1){
       this.voteDown();
     } else{
       this.voteUp();
     }
-    setTimeout(
+    this.waitingForNext = setTimeout(
       this.parentView.nextTwoVines.bind(this.parentView), this.resultsDelay
     );
   },
 
   skipChoosing: function(){
+    clearTimeout(this.waitingForNext);
     $('body').off('keydown');
     this.parentView.nextTwoVines();
   },
@@ -75,23 +77,11 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
   voteDown: function(){
     $('.vote').prop('disabled', 'true');
     this.renderPollChart(this.vine2);
-    setTimeout(
-      function(){
-        $('.voting-result-text').empty();
-      }, this.resultsDelay
-    );
-    console.log("voted right");
   },
 
   voteUp: function(){
     $('.vote').prop('disabled', 'true');
     this.renderPollChart(this.vine1);
-    setTimeout(
-      function(){
-        $('.voting-result-text').empty();
-      }, this.resultsDelay
-    );
-    console.log("voted left");
   },
 
   renderPollChart: function(vine_vote){
@@ -145,7 +135,6 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
 
   showNextCountdown: function(message){
     var content = JST['polls/afterBrowsedVote']({
-      // message: message,
       time: this.resultsDelay / 1000
     });
     $('.directions').html(message).addClass('lower-margin');
