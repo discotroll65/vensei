@@ -12,6 +12,7 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
   initialize: function(options){
     this.parentView = options.parentView;
     this.battle = options.battle;
+    this.user = options.user;
     this.vine1 = options.vine1;
     this.vine2 = options.vine2;
     this.vine1Votes = this.vine1.get('total_votes');
@@ -46,6 +47,21 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
     }
   },
 
+  voteFromClick: function(event){
+    event.preventDefault();
+    $('.vote').prop('disabled', 'true');
+    $('body').off('keydown');
+    var $target = $(event.currentTarget);
+    if ($target.attr('class').split(" ").indexOf("vote-1") === -1){
+      this.voteDown();
+    } else{
+      this.voteUp();
+    }
+    setTimeout(
+      this.parentView.nextTwoVines.bind(this.parentView), this.resultsDelay
+    );
+  },
+
   skipChoosing: function(){
     $('body').off('keydown');
     this.parentView.nextTwoVines();
@@ -78,21 +94,6 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
     console.log("voted left");
   },
 
-  voteFromClick: function(event){
-    event.preventDefault();
-    $('.vote').prop('disabled', 'true');
-    $('body').off('keydown');
-    var $target = $(event.currentTarget);
-    if ($target.attr('class').split(" ").indexOf("vote-1") === -1){
-      this.voteDown();
-    } else{
-      this.voteUp();
-    }
-    setTimeout(
-      this.parentView.nextTwoVines.bind(this.parentView), this.resultsDelay
-    );
-  },
-
   renderPollChart: function(vine_vote){
     options = this.handleVineVote(vine_vote);
     this.pollChartView.drawChart(
@@ -103,12 +104,63 @@ Vensei.Views.BrowsedPoll = Backbone.CompositeView.extend({
   handleVineVote: function(vine_vote){
     this.createPollVote(vine_vote);
     this.interpretVineVote(vine_vote);
-    this.parentView.handleScore(this.votes_choice, this.winner, vine_vote);
+    this.handleScore(this.votes_choice, this.winner, vine_vote);
 
     return {
       data: [this.vine2Votes, this.vine1Votes],
       chartColor: this.chartRgb
     };
+  },
+
+  makeScoreChanges: function(opts){
+    $('.browsed-poll-background')
+      .removeClass("no-guess").addClass(opts.colorClass);
+    $('button.vote').removeClass("btn-primary").addClass(opts.buttonClass);
+    $('.no-guess').removeClass("no-guess").addClass(opts.colorClass);
+    this.chartRgb = opts.chartRgb;
+
+    this.user.set("score", this.user.get("score") + opts.addedPoints);
+  },
+
+  handleScore: function(votes_choice, winner, vine_vote){
+    var author, opts, message;
+    author = vine_vote.escape('vine_author');
+
+    if(votes_choice === winner){
+      opts = {colorClass: "winner", buttonClass: "btn-success", addedPoints: 3,
+        chartRgb: "0, 250, 0"};
+
+      message = "Most folks also picked "+ author +"'s vine! + 3 points";
+    }else {
+      opts = {colorClass: "loser", buttonClass: "btn-danger",addedPoints: -5,
+        chartRgb: "250, 0, 0"};
+
+      message = "Most think"+ author +"'s vine not as funny. - 5 points";
+    }
+
+    this.makeScoreChanges(opts);
+    this.user.save();
+    this.showNextCountdown(message);
+  },
+
+  showNextCountdown: function(message){
+    var content = JST['polls/afterBrowsedVote']({
+      // message: message,
+      time: this.resultsDelay / 1000
+    });
+    $('.directions').html(message).addClass('lower-margin');
+
+    $('.skip').html(content);
+    $('.replay').empty();
+    $('.next-two-vines').TimeCircles(
+      { time: {
+          Days: { show: false },
+          Hours: { show: false },
+          Minutes: { show: false },
+          Seconds: { color: "#C0C8CF" }
+        }
+      }
+    );
   },
 
   interpretVineVote: function(vine_vote){

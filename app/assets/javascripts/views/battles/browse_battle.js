@@ -101,6 +101,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   addBrowsedPollView: function(){
     this.browsedPollView = new Vensei.Views.BrowsedPoll({
       parentView: this,
+      user: this.user,
       battle: this.battle,
       vine1: this.vine1,
       vine2: this.vine2
@@ -121,38 +122,6 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   nextTwoVines: function(){
     this.removeBrowsedPollView();
     this.setupBattle();
-  },
-
-  makeScoreChanges: function(opts){
-    $('.browsed-poll-background')
-      .removeClass("no-guess").addClass(opts.colorClass);
-    $('button.vote').removeClass("btn-primary").addClass(opts.buttonClass);
-    $('.no-guess').removeClass("no-guess").addClass(opts.colorClass);
-    this.chartRgb = opts.chartRgb;
-
-    this.user.set("score", this.user.get("score") + opts.addedPoints);
-  },
-
-  handleScore: function(votes_choice, winner, vine_vote){
-    var author, opts, message;
-    author = vine_vote.escape('vine_author');
-
-    if(votes_choice === winner){
-      opts = {colorClass: "winner", buttonClass: "btn-success", addedPoints: 3,
-        chartRgb: "0, 250, 0"};
-
-      message = "Most folks also picked "+ author +"'s vine! + 3 points";
-      this.makeScoreChanges(opts);
-    }else {
-      opts = {colorClass: "loser", buttonClass: "btn-danger",addedPoints: -5,
-        chartRgb: "250, 0, 0"};
-        
-      message = "Most think"+ author +"'s vine not as funny. - 5 points";
-      this.makeScoreChanges(opts);
-    }
-
-    this.user.save();
-    $('.key-vote-prompt').html('<h2>' + message + '</h2>');
   },
 
   addSourceToVideo: function(element, src, type) {
