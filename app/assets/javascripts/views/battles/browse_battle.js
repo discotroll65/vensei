@@ -21,7 +21,6 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     this.render();
   },
 
-
   render: function(){
     var filler = new Vensei.Models.Vine();
     this.vine1 = this.vine1 || filler;
@@ -106,7 +105,6 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
       vine1: this.vine1,
       vine2: this.vine2
     });
-
     this.addSubview('.browsed-poll', this.browsedPollView);
   },
 
@@ -120,6 +118,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   },
 
   nextTwoVines: function(){
+    $('video').attr('src', '').load();
     this.removeBrowsedPollView();
     this.setupBattle();
   },
