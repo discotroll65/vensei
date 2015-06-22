@@ -13,7 +13,7 @@ Vensei.Views.PollChart = Backbone.View.extend({
   render: function(){
     var content = this.template();
     this.$el.html(content);
-    this.canvas = this.$('#live-poll-chart')[0];
+    this.canvas = this.$('.live-poll-chart')[0];
     setTimeout(this.drawChart.bind(this, this.canvas, [0,0]), 0);
     return this;
   },

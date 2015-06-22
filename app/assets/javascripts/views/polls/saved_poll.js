@@ -55,24 +55,10 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
 
   voteDown: function(){
     this.handleVoteUpdateChart(this.acceptorVine);
-
-    setTimeout(
-      function(){
-        $('.voting-result-text').empty();
-      }, 2000
-    );
-    console.log("voted right");
   },
 
   voteUp: function(){
     this.handleVoteUpdateChart(this.challengerVine);
-
-    setTimeout(
-      function(){
-        $('.voting-result-text').empty();
-      }, 2000
-    );
-    console.log("voted left");
   },
 
   handleVoteUpdateChart: function(vine_vote){
