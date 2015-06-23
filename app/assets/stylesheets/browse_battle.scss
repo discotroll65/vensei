@@ -67,9 +67,7 @@
   }
 
   .vine.playing{
-    top: 0;
-    // left: 50%;
-    // position: absolute;
+    top: 2vh;
   }
 
   .vine.voting{
@@ -79,6 +77,5 @@
 
   .vine-2.away{
     top: 1000px;
-    // position: fixed;
   }
 }
