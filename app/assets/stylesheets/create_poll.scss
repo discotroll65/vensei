@@ -10,6 +10,8 @@
 .new-poll-form-container{
   form.new-poll-form{
     height: 50%;
+    margin: auto;
+    width: 50%;
   }
   background: aliceblue;
   margin: auto;
@@ -23,6 +25,7 @@
   border-radius: 3px;
   h1{
     font-size: 3vw;
+    text-align: center
   }
   h2{
     font-size: 2vw;
@@ -30,7 +33,8 @@
 
   input{
     height: 15%;
-    width: 90%;
+    width: 100%;
+    margin: auto;
   }
 
 }
