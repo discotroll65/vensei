@@ -36,7 +36,6 @@ h1 {
 
 #content {
   height: 100%;
-  background: #CEFFE1;
   padding-top: 77px;
   position: relative;
 }
@@ -58,6 +57,14 @@ nav.navbar {
   left: 0;
   right: 0;
   z-index: 10;
+}
+
+.navbar-brand{
+  padding:0;
+}
+
+.navbar-brand:hover{
+  background: blue;
 }
 
 .group:after {
