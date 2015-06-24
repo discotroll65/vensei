@@ -1,6 +1,6 @@
 class Api::PollsController < ApplicationController
   def index
-    @polls = Poll.all
+    @polls = current_user.polls
     render :index
   end
 

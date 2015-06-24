@@ -48,7 +48,12 @@ Vensei.Routers.Router = Backbone.Router.extend({
   },
 
   myPolls: function(options){
-    var view = new Vensei.Views.MyPolls(options);
+    var polls = new Vensei.Collections.Polls();
+    polls.fetch();
+    settings = $.extend({}, options, {
+      collection: polls
+    });
+    var view = new Vensei.Views.MyPolls(settings);
     this._swapView(view);
   },
 
