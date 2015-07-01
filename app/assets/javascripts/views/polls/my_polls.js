@@ -34,7 +34,6 @@ Vensei.Views.MyPolls = Backbone.CompositeView.extend({
     var pollItemView = new Vensei.Views.PollItemView({
       model: poll
     });
-
     this.addSubview('.polls', pollItemView);
   },
 

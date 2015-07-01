@@ -21,7 +21,6 @@ Vensei.Models.Poll = Backbone.Model.extend({
       this.voters().set(payload.voters);
       delete payload.voters;
     }
-
     return payload;
   }
 });
