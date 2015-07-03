@@ -3,48 +3,50 @@
   bottom: 0;
   right: 0;
   left: 0;
-  position: fixed;
+  position: absolute;
   background: rgba(0,0, 0, .6);
 }
 
 .new-poll-form-container{
-  form.new-poll-form{
-    height: 50%;
-    margin: auto;
-    width: 50%;
-  }
-  img{
-    height: 150px;
-    float: left;
-    max-width: 341px;
-  }
   background: aliceblue;
   margin: auto;
-  top: 0;
+  top: 120px;
   bottom: 0;
   right: 0;
   left: 0;
   width: 60%;
-  height: 60%;
-  position: fixed;
+  height: 70vh;
+  position: absolute;
   border-radius: 3px;
+
+  form.new-poll-form{
+    height: 70%;
+    margin: auto;
+    width: 50%;
+    min-width: 315px;
+  }
+
   h1{
     font-size: 3vw;
     text-align: center;
     margin-top: 20px;
+  }
+  h1.vine-search{
+    font-size: 4vh;
   }
   h2{
     font-size: 2vw;
   }
 
   label{
-    font-size: 25px;
+    font-size: 3.5vh;
   }
 
   input{
     height: 15%;
     width: 100%;
     margin: auto;
+    font-size: 4vh;
   }
 
 }
