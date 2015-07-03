@@ -1,6 +1,7 @@
 .poll-vine-vid{
   height: 35vh;
   width: 27vw;
+  max-width: 35vh;
   margin: 0 auto;
   display: block;
 }
@@ -15,12 +16,13 @@
 .saved-poll-vine-vid{
   height: 35vh;
   width: 30vw;
+  max-width: 35vh;
   margin: 0 auto;
   display: block;
 }
 
 .saved-poll-vine-vid.demo{
-  height: 172px;
+  height: 154px;
   width: 168px;
   margin: 0 auto;
   padding: 0;

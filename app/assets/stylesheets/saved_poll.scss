@@ -8,6 +8,8 @@
   }
 }
 
+
+
 .saved-poll-content{
   background: aliceblue;
   margin: auto;
@@ -45,9 +47,12 @@ hr.vid-divider{
   border-top: 3px solid #000;
 }
 
-.saved-poll-chart-container.demo{
-  height: 345px;
-  background: palegoldenrod;
+.directions{
+  padding: 30px;
+}
+
+.directions.demo{
+  padding: 15px;
 }
 
 .live-saved-poll-place-holder.demo{

@@ -1,3 +1,14 @@
+.poll-chart-container{
+  height: 71vh;
+  background: palegoldenrod;
+}
+
+.saved-poll-chart-container.demo{
+  height: 310px;
+  background: palegoldenrod;
+}
+
+
 canvas.live-poll-chart{
   width: 54vw !important;
   height: 60vh !important;
@@ -5,5 +16,5 @@ canvas.live-poll-chart{
 
 canvas.demo{
   width: 403px !important;
-  height: 258px !important;
+  height: 221px !important;
 }
