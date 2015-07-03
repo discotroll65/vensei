@@ -7,6 +7,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     this.user = options.user;
     this.collection.length && this.setupBattle();
     this.listenTo(this.collection, 'sync', this.setupBattle);
+    this.waitingForVote = false;
   },
 
   setupBattle: function(){
@@ -50,6 +51,9 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
   },
 
   grabMovedVine: function (event){
+    if (this.waitingForVote){
+      return;
+    }
     var number;
     var vine;
     var that = this;
@@ -57,6 +61,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     var $vid = $target.find('video');
     if($vid.attr('class').split(" ").indexOf("vine-vid-1") === -1){
       vine = this.vine2;
+      this.waitingForVote = true;
     } else{
       vine = this.vine1;
     }
@@ -110,6 +115,7 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
 
   removeBrowsedPollView: function(){
     this.removeSubview('.browsed-poll', this.browsedPollView);
+    this.waitingForVote = false;
   },
 
   resetBrowsedPollView: function(){

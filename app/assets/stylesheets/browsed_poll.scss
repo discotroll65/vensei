@@ -1,10 +1,11 @@
 .browsed-poll-background{
-  top: 0;
+  top: 80px;
   bottom: 0;
   right: 0;
   left: 0;
-  position: fixed;
-  z-index: 60;
+  position: absolute;
+  z-index: 45;
+  height: 102vh;
 }
 
 .browsed-poll-background.no-guess{
@@ -37,14 +38,14 @@
 
 .browsed-poll-content{
   background: aliceblue;
-  margin: auto;
+  margin: 0 auto;
   top: 40px;
   bottom: 0;
   right: 0;
   left: 0;
   width: 90%;
-  height: 90%;
-  position: fixed;
+  height: 95vh;
+  position: absolute;
   h1{
     font-size: 3vw;
   }
@@ -62,7 +63,7 @@
     float: left;
 
     h3{
-      font-size: 3vw;
+      font-size: 2vw;
       margin:0;
     }
   }

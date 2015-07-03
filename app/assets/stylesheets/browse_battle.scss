@@ -6,12 +6,6 @@
   height: 100%;
   overflow: hidden;
 
-  .vine-container{
-    // height: 550px;
-    // padding: 0;
-    // position: static;
-  }
-
   h1.vine-author{
     font-size: 25px;
     padding:0;
@@ -28,7 +22,7 @@
   .vine{
     background: palegoldenrod;
     position: relative;
-    margin: auto;
+    margin: 40px auto;
     height: 72vh;
     width: 68vh;
     transition: top 500ms ease;
