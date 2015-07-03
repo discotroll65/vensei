@@ -17,7 +17,7 @@ Vensei.Views.MyPolls = Backbone.CompositeView.extend({
 
 
   events: {
-    'click .new-poll': 'addCreatePollView',
+    'click .create-new-poll': 'addCreatePollView',
     'click .close' : 'removeCreatePollView',
     'click .new-poll-background-modal': 'closePollViewByClick'
 
