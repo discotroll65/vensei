@@ -1,17 +1,5 @@
 
-.fancy-vine {
-  position: absolute;
-  background-image: url("http://res.cloudinary.com/dndjfdea0/image/upload/v1435025847/fancy_vine_hvo8vk.jpg");
-  background-repeat: no-repeat;
-
-  width:100%;
-  height:100%;
-  z-index: -2;
-}
-
 .response-block {
-  // background-image: url("http://res.cloudinary.com/dndjfdea0/image/upload/c_fit,w_550/v1435075926/browse1_tf18bp.png");
-  // background-repeat: no-repeat;
   width: 20vw;
   height: 20vw;
 }
@@ -21,7 +9,9 @@
 }
 
 body{
-  background-image: url("http://res.cloudinary.com/dndjfdea0/image/upload/v1435025847/fancy_vine_hvo8vk.jpg");
+  background-image: url(
+  "http://res.cloudinary.com/dndjfdea0/image/upload/v1435897526/black-Linen_zc6jug.png");
+  background-size: cover;
   background-repeat: no-repeat;
 }
 
@@ -38,10 +28,10 @@ body{
 }
 
 .live-action-vid-1{
-  left: 0;
+  right: 50%;
 }
 .live-action-vid-2{
-  right: 0;
+  left: 50%;
 }
 
 #value-statement {
