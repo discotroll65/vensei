@@ -16,28 +16,21 @@
 
     <div class="collapse navbar-collapse" id="vensei_links">
       <ul class="nav navbar-nav pull-right">
-        <li>
-          <a class="score navbar-text" href="#">
+        <li class="navbar-text score">
+          <a >
             score: <%= user.escape('score') %>
           </a>
         </li>
-        <li class="dropdown">
-          <a
-            href="#"
-            class="dropdown-toggle pull-right navbar-text"
-            data-toggle="dropdown"
-            role="button"
-            aria-expanded="false">Logged in as <%= CURRENT_USER_USERNAME %></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">Leaderboard</a></li>
-            <li><a href="#polls">My vine polls</a></li>
-            <li class="divider"></li>
-            <li><a class="sign-out" href="#">Sign Out</a></li>
-          </ul>
+        <li class="navbar-text" >
+          <a >
+            Logged in as <%= CURRENT_USER_USERNAME %>
+          </a>
         </li>
+        <li class="navbar-text"><a href="#polls">My vine polls</a></li>
+        <li class="navbar-text"><a class="sign-out" href="#">Sign Out</a></li>
       </ul>
 
-    </div><!-- /.navbar-collapse -->
+    </div>
 
   </div> <!-- /.container-fluid -->
 </nav>
