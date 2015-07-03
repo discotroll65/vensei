@@ -14,8 +14,7 @@
     width: 50%;
   }
   img{
-    height: 20vh;
-    width: 30vw;
+    height: 150px;
     float: left;
     max-width: 341px;
   }
@@ -31,10 +30,15 @@
   border-radius: 3px;
   h1{
     font-size: 3vw;
-    text-align: center
+    text-align: center;
+    margin-top: 20px;
   }
   h2{
     font-size: 2vw;
+  }
+
+  label{
+    font-size: 25px;
   }
 
   input{
