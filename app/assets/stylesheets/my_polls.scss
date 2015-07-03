@@ -7,15 +7,28 @@
 }
 
 .polls-list{
-  background: blue;
   margin: 0;
+  margin: auto;
+  width: 80%;
+  background-color: rgb(181, 221, 255);
+}
+div.polls-list{
+  position: relative;
+  top: 50px;
+}
+
+ul.polls-list{
+  max-height: 600px;
+  overflow: overlay;
 }
 
 .polls-title{
   font-size: 50px;
+  text-align: center;
 }
 
 .polls-list, .poll-item{
+  border-radius: 5px;
   list-style-position: inside;
   list-style-type: none;
   padding: 0;
@@ -23,4 +36,5 @@
 
 .create-new-poll{
   font-size: 25px;
+  margin: 40px 0 0 0;
 }
