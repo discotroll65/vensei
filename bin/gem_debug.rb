@@ -27,13 +27,10 @@ opts[:count] ||= 10
 vine_criteria = "\"vine.co/v/\" #{vine_url2} -RT"
 puts "Using search criteria [#{vine_criteria}]" if TwitterVine::DEBUG
 #_normalize(tc.search(vine_criteria, opts))
-binding.pry
 vc = make_vine_client
-binding.pry
 response_vine = vc.search(vine_url2, {count: 1})[0]
 
 
-binding.pry
 
 puts "hmm"
 

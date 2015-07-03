@@ -1,0 +1,26 @@
+.poll-item {
+  list-style-type: none;
+  background: aliceblue;
+  // border: solid 1px;
+  font-size: 32px;
+  margin: 3px 0;
+}
+
+.polls-list{
+  background: blue;
+  margin: 0;
+}
+
+.polls-title{
+  font-size: 50px;
+}
+
+.polls-list, .poll-item{
+  list-style-position: inside;
+  list-style-type: none;
+  padding: 0;
+}
+
+.create-new-poll{
+  font-size: 25px;
+}
