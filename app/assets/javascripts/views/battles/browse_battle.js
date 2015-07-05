@@ -26,10 +26,19 @@ Vensei.Views.BrowseBattles = Backbone.CompositeView.extend({
     var filler = new Vensei.Models.Vine();
     this.vine1 = this.vine1 || filler;
     this.vine2 = this.vine2 || filler;
+    var caption1= "Caption: " , caption2 = "Caption: ";
+    if (this.vine1.escape("text").trim().length === 0){
+      caption1 = "";
+    }
+    if (this.vine2.escape("text").trim().length === 0){
+      caption2 = "";
+    }
 
     var content = this.template({
       vine1: this.vine1,
-      vine2: this.vine2
+      vine2: this.vine2,
+      caption1: caption1,
+      caption2: caption2
     });
 
     this.$el.html(content);
