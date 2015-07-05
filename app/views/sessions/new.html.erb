@@ -11,21 +11,18 @@
     <%= button_to "Register", new_user_url, method: :get %>
 
 
-    <form class="guest-login" action="<%= users_url %>" method="post">
-      <%= csrf_tag %>
+    <form>
 
-        <input type="hidden" class="form-control"
-          type="text" name="user[username]"
-          value="guest_<%= Faker::Hacker.noun +  rand(1..999).to_s %>">
-        <input type="hidden"
-          class="form-control" type="password" name="user[password]"
-          value="password"
-          >
-
-      <input class="btn btn-primary guest-signin" type="submit" value="Sign in as Guest">
+      <input
+        class="btn btn-primary guest-login"
+        type="submit" value="Guest Tour">
     </form>
-
-
 
   </div>
 </div>
+
+<script>
+  $(function(){
+    Guest.initialize();
+  });
+</script>
