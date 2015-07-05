@@ -99,5 +99,10 @@ Vensei.Routers.Router = Backbone.Router.extend({
     this._currentView = view;
     this.$rootEl.html(view.$el);
     view.render();
+
+    if (!Vensei.initialTourComplete){
+      Vensei.initialTourComplete = true;
+      $( ".help" ).trigger( "click" );
+    }
   }
 });

@@ -5,6 +5,7 @@ window.Vensei = {
   Routers: {},
   Mixins: {},
   initialize: function() {
+    Vensei.initalTourComplete = false;
     var user = new Vensei.Models.User(
       {id: CURRENT_USER_ID}
     );

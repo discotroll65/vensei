@@ -13,7 +13,7 @@ window.Guest = {
 		this.slowtype($username, 'Goku', function(){
 			that.slowtype($password, 'password', function(){
 				$submitButton.click();
-			})
+			});
 		});
 	},
 
@@ -29,5 +29,8 @@ window.Guest = {
 			}
 		}, 40);
 	}
-
 };
+
+$(function(){
+  Guest.initialize();
+});

@@ -7,10 +7,16 @@ Vensei.Views.LandingPage = Backbone.CompositeView.extend({
     );
   },
 
+  help: function(){
+    var help = new Vensei.Views.HelpIcon();
+    return help;
+  },
+
   render: function(){
     var content = this.template();
     this.$el.html(content);
     this.attachSubviews();
+    this.$el.append(this.help().render().$el);
     return this;
   },
 
