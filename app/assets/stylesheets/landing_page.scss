@@ -16,13 +16,14 @@ body{
 }
 
 .live-action{
-  height: 33.5vw;
+  height: 68.5vh;
   position: relative;
   background: rgba(0,0,0,.5);
 }
 
 .live-action-vid{
   height: 100%;
+  max-width: 49vw;
   position: absolute;
   z-index: -1;
 }
@@ -118,7 +119,7 @@ body{
 
 #how-it-works {
   height: 681px;
-  padding-top: 13.5vw;
+  padding-top: 27.5vh;
   padding-bottom: 50px;
   background: white;
   text-align: center;
@@ -159,6 +160,9 @@ body{
     width: 28.5vw;
     height: 30vh;
     margin: 5px 0;
+  }
+  .last-response-block{
+    overflow: hidden;
   }
 }
 
