@@ -17,9 +17,9 @@ gem 'puma'
 gem 'twitter-vine', github: 'discotroll65/twitter-vine'
 gem 'faker'
 gem 'rails_12factor'
+gem 'pry-rails'
 
 group :development do
-  gem 'pry-rails'
   gem 'annotate'
   gem 'quiet_assets'
   gem 'pry-byebug'
