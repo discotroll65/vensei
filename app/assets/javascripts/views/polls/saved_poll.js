@@ -111,8 +111,15 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
   },
 
   createPollVote: function(vine_vote){
+    var voterId;
+    if (CURRENT_USER_USERNAME === "Goku"){
+      voterId = window.DUMMY_USER_ID;
+    } else {
+      voterId = window.CURRENT_USER_ID;
+    }
+
     var pollVote  = new Vensei.Models.PollVote({
-      user_id: window.CURRENT_USER_ID,
+      user_id: voterId,
       vine_vote_id: vine_vote.id,
       poll_id: this.poll.id
     });
@@ -121,6 +128,7 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
 
 
   render: function(){
+    var votable;
     var content = this.template({
       poll: this.poll,
       vine1: this.challengerVine,
@@ -136,7 +144,12 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
       this.$('.saved-poll-content').addClass('demo');
       this.$('.directions').addClass('demo');
     }
-    if (this.poll.voters().get(CURRENT_USER_ID)){
+    if (CURRENT_USER_USERNAME !== "Goku"){
+      votable = this.poll.voters().get(CURRENT_USER_ID);
+    }else {
+      votable = this.poll.voters().get(DUMMY_USER_ID);
+    }
+    if (votable){
       this.alreadyVoted();
     }
     return this;

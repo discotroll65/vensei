@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
       params[:user][:username], params[:user][:password]
     )
     if @user
+      make_dummy_user if @user.username == "Goku"
       sign_in!(@user)
       redirect_to root_url
     else
@@ -27,5 +28,13 @@ class SessionsController < ApplicationController
         render json: {}
       end
     end
+  end
+
+  private
+  def make_dummy_user
+    dummy_user = User.new(
+      username: Faker::Hacker.noun + rand(1..999).to_s, password: "password"
+    )
+    sign_in_dummy_user!(dummy_user)
   end
 end
