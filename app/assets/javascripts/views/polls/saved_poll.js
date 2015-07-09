@@ -143,6 +143,7 @@ Vensei.Views.SavedPoll = Backbone.CompositeView.extend({
       this.$('.live-saved-poll-place-holder').addClass('demo');
       this.$('.saved-poll-content').addClass('demo');
       this.$('.directions').addClass('demo');
+      this.$('.emphasize').removeClass('emphasize');
     }
     if (CURRENT_USER_USERNAME !== "Goku"){
       votable = this.poll.voters().get(CURRENT_USER_ID);
