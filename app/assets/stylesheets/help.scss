@@ -20,8 +20,19 @@
   cursor: hand;
 }
 
+div[data-id=welcomeStep] .shepherd-content{
+  width: 500px;
+  left: 50%;
+  margin-left: -250px;
+}
+
 h3.shepherd-title{
   font-size: 30px !important;
+  color: white;
+}
+
+.shepherd-content header{
+  background: #0AB226 !important;
 }
 
 .shepherd-text p{

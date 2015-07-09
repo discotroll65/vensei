@@ -20,9 +20,7 @@ Vensei.Views.HelpIcon = Backbone.CompositeView.extend({
 		Vensei.tour.addStep('welcomeStep', {
 			title: 'Welcome to Vensei!',
 			text: "Vensei lets you make live-updating polls that" +
-			" compare the comedic value of two Vines. As your audience"+
-			" submits their responses over the web or sms, polls"+
-			" update live. If you\'ve ever used Poll"+
+			" compare the comedic value of two Vines. If you\'ve ever used Poll"+
 			" Everywhere, this should be very familiar!",
 			classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
 			buttons: [
@@ -43,7 +41,7 @@ Vensei.Views.HelpIcon = Backbone.CompositeView.extend({
 		Vensei.tour.addStep('cardStep', {
 			title: 'Live demo',
 			text: "This is a live demo; play the vids and vote!",
-			attachTo: '.computer',
+			attachTo: '.saved-poll-vine-vid',
 			classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
 			buttons: [
 				{
@@ -62,9 +60,8 @@ Vensei.Views.HelpIcon = Backbone.CompositeView.extend({
 
 		Vensei.tour.addStep('cardStep', {
 			title: 'Live Updates',
-			text: "Like all Vensei Polls, this poll updates live when"+
-			" anyone votes; have a friend vote and see it update!",
-			attachTo: '.computer',
+			text: "Have a friend vote, watch this poll update live!",
+			attachTo: '.saved-poll-chart-container',
 			classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
 			buttons: [
 				{
@@ -123,10 +120,8 @@ Vensei.Views.HelpIcon = Backbone.CompositeView.extend({
 		});
 
 		Vensei.tour.addStep('cardStep', {
-			title: 'Get points for knowing what people think are funny',
-			text: "As you vote on browsed vines, if your choice matches the Vine"+
-			" that most people thought was funnier, you'll get points. Otherwise,"+
-			" you'll lose points. Score is displayed in the navbar up top.",
+			title: 'See how you match up to the Hive Mind',
+			text: "Get points when your vote matches the majority -- lose points otherwise.",
 			scrollTo: true,
 			attachTo: '.response-block',
 			classes: 'shepherd shepherd-open shepherd-theme-arrows shepherd-transparent-text',
